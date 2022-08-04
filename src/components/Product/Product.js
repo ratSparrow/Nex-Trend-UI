@@ -4,7 +4,7 @@ import React from "react";
 import "./Product.css";
 
 const Product = ({ product, handleAddToCart }) => {
-  const { name, img, seller, price, stock, id } = product;
+  const { name, img, seller, price, stock } = product;
 
   const cartIcon = <FontAwesomeIcon icon={faShoppingCart} />;
 
