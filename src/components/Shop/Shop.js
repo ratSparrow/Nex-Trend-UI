@@ -8,15 +8,25 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   // selected product by clicking button
   const [cart, setCart] = useState([]);
+  const [displayProduct, setDisplayProduct] = useState([]);
 
   useEffect(() => {
     fetch("./products.JSON")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
-        console.log(data);
+        setDisplayProduct(data);
       });
   }, []);
+
+  const handleSearch = (e) => {
+    const searchProduct = e.target.value;
+    const matchProduct = products.filter((product) =>
+      product.name.toLowerCase().includes(searchProduct.toLowerCase())
+    );
+    console.log(matchProduct.length);
+    setDisplayProduct(matchProduct);
+  };
 
   useEffect(() => {
     if (products.length) {
@@ -35,27 +45,31 @@ const Shop = () => {
 
   const handleAddToCart = (product) => {
     const newCart = [...cart, product];
-    console.log(product);
-    console.log(newCart);
+
     setCart(newCart);
     addToDb(product.key);
   };
   return (
-    <div className="shop-container">
-      <div className="product-container">
-        <h3>Products: </h3>
-        {products.map((product) => (
-          <Product
-            key={product.key}
-            product={product}
-            handleAddToCart={handleAddToCart}
-          ></Product>
-        ))}
+    <>
+      <div className="search-container">
+        <input type="text" onChange={handleSearch} />
       </div>
-      <div className="cart-container">
-        <Cart cart={cart}></Cart>
+      <div className="shop-container">
+        <div className="product-container">
+          <h3>Products: </h3>
+          {displayProduct.map((product) => (
+            <Product
+              key={product.key}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            ></Product>
+          ))}
+        </div>
+        <div className="cart-container">
+          <Cart cart={cart}></Cart>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
