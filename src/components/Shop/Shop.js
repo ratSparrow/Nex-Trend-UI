@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
+import useProducts from "../../hooks/useProducts";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "./../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
-  // selected product by clicking button
+  const [products, displayProduct, setDisplayProduct] = useProducts();
   const [cart, setCart] = useState([]);
-  const [displayProduct, setDisplayProduct] = useState([]);
-
-  useEffect(() => {
-    fetch("./products.JSON")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-        setDisplayProduct(data);
-      });
-  }, []);
 
   const handleSearch = (e) => {
     const searchProduct = e.target.value;
@@ -54,6 +44,7 @@ const Shop = () => {
       <div className="search-container">
         <input type="text" onChange={handleSearch} />
       </div>
+
       <div className="shop-container">
         <div className="product-container">
           <h3>Products: </h3>
