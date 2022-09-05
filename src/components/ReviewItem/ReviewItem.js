@@ -16,8 +16,7 @@ const ReviewItem = ({ product, handleRemove }) => {
         <p>
           <small>only {shipping} left in the stock</small>
         </p>
-        <div onClick={handleRemove}>
-          {" "}
+        <div onClick={() => handleRemove(product)}>
           <i className="fas fa-trash "></i>
         </div>
       </div>
