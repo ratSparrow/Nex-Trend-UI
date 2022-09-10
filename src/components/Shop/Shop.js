@@ -43,7 +43,13 @@ const Shop = () => {
   return (
     <>
       <div className="search-container">
-        <input type="text" onChange={handleSearch} />
+        <input
+          required
+          onChange={handleSearch}
+          type="text"
+          className="rounded bg-white  mx-auto hover:border-lime-300
+            w-3/4 mb-4 "
+        />
       </div>
 
       <div className="shop-container">
@@ -57,6 +63,7 @@ const Shop = () => {
             ></Product>
           ))}
         </div>
+
         <div className="cart-container">
           <Cart key={cart.key} cart={cart}>
             <Link to="/orders">

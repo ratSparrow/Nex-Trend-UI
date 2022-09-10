@@ -18,15 +18,23 @@ const Orders = () => {
 
   return (
     <div className="shop-container">
-      <div className="product-container">
-        {cart.map((product) => (
-          <ReviewItem
-            product={product}
-            key={product.id}
-            handleRemove={handleRemove}
-          />
-        ))}
-      </div>
+      {cart.length > 0 ? (
+        <div className="product-container">
+          {cart.map((product) => (
+            <ReviewItem
+              product={product}
+              key={product.id}
+              handleRemove={handleRemove}
+            />
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h3 className="font-semibold text-xl text-slate-800 m-5 p-2">
+            No Product added to the cart
+          </h3>
+        </div>
+      )}
       <div className="cart-container">
         <Cart cart={cart}>
           <Link to="/inventory">
