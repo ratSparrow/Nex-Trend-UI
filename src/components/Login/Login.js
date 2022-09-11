@@ -1,31 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useFirebase from "../../hooks/useFirebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+
+import auth from "../../firebase.init";
 import "./Login.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const [error, setError] = useState("");
-  const [signIn, err, googleSignIn] = useFirebase();
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
 
   const handleLoginData = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newLoginData = { ...loginData };
     newLoginData[field] = value;
-
+    console.log(newLoginData);
     setLoginData(newLoginData);
   };
 
-  const handleGoogleLogin = () => {
-    googleSignIn();
-  };
+  const handleGoogleLogin = () => {};
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signIn(loginData);
-    setError(err);
+    signInWithEmailAndPassword(loginData.email, loginData.password);
   };
+
+  if (user) {
+    navigate("/shop");
+  }
+
   return (
     <div>
       <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
@@ -61,6 +66,7 @@ const Login = () => {
           />
         </form>
 
+        {loading && <p>Loading..</p>}
         <div className="flex justify-center items-center">
           <div className="w-1/4 border-gray-300 border-b-2"></div>
           <div className="mx-2 text-gray-600">or</div>
@@ -86,6 +92,7 @@ const Login = () => {
             {error}
           </h1>
         )}
+
         <Link to="/signup">
           <h2 className="text-blue-800 text-center text-sm mt-2 mb-1 ">
             not an account? sign up

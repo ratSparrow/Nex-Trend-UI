@@ -1,32 +1,44 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import useFirebase from "../../hooks/useFirebase";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const SignUp = () => {
   const [loginData, setLoginData] = useState({});
   const [error, setError] = useState("");
-  const [userCreation, success, err] = useFirebase();
+
+  const [createUserWithEmailAndPassword, user, loading] =
+    useCreateUserWithEmailAndPassword(auth);
+  const navigate = useNavigate();
 
   const handleLoginData = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newLoginData = { ...loginData };
     newLoginData[field] = value;
-
     setLoginData(newLoginData);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginData);
+
     if (loginData.password !== loginData.confirmPassword) {
       setError("password didn't match, please try again");
       return;
-    } else {
-      userCreation(loginData);
-      setError(err);
+    } else if (loginData.password.length < 6) {
+      setError("password must be six characters");
+      return;
     }
+    createUserWithEmailAndPassword(loginData.email, loginData.password);
+    setLoginData("");
+    console.log(user);
   };
+
+  if (user) {
+    navigate("/inventory");
+  }
+
   return (
     <div>
       <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
