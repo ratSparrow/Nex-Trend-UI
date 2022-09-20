@@ -11,22 +11,47 @@ const Header = () => {
     signOut(auth);
   };
   return (
-    <div className="header">
-      <nav>
-        <Link to="/shop">Shop</Link>
-        <Link to="/orders">Orders</Link>
-        <Link to="/inventory">Invetory</Link>
-        <Link to="/about">About</Link>
+    <div className="text-center">
+      <nav className="bg-emerald-800 p-2 ">
+        <Link
+          className="text-white font-semibold text-xl hover:text-amber-600 mr-3"
+          to="/shop"
+        >
+          Shop
+        </Link>
+        <Link
+          className="text-white font-semibold text-xl hover:text-amber-600 mr-3"
+          to="/orders"
+        >
+          Orders
+        </Link>
+        <Link
+          className="text-white font-semibold text-xl hover:text-amber-600 mr-3"
+          to="/inventory"
+        >
+          Invetory
+        </Link>
+        <Link
+          className="text-white font-semibold text-xl hover:text-amber-600 mr-3"
+          to="/about"
+        >
+          About
+        </Link>
 
         {user ? (
           <button
-            className=" rounded-full font-bold text-white text-black-500  mx-auto bg-yellow-500 w-1/6 hover:bg-red-700 m-2 cursor-pointer"
+            className="rounded-full font-semibold text-white text-black-500  mx-auto bg-teal-900 w-1/6 hover:text-amber-600 hover:capitalize m-2 cursor-pointer"
             onClick={handleSignOut}
           >
-            sign out
+            logout
           </button>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link
+            className="text-white font-semibold text-xl hover:text-amber-600 mr-3"
+            to="/login"
+          >
+            Login
+          </Link>
         )}
       </nav>
     </div>

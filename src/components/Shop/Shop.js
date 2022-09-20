@@ -42,13 +42,14 @@ const Shop = () => {
   };
   return (
     <>
-      <div className="search-container">
+      <div className="text-center bg-emerald-800 mb-4">
         <input
           required
           onChange={handleSearch}
+          placeholder="Search Product"
           type="text"
-          className="rounded bg-white  mx-auto hover:border-lime-300
-            w-3/4 mb-4 "
+          className="rounded text-center mb-2 mt-2 hover:border-lime-700
+            w-3/4 border"
         />
       </div>
 

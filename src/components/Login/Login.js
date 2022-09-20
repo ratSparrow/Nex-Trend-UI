@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
+  useAuthState,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -10,9 +10,9 @@ import "./Login.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,10 +25,6 @@ const Login = () => {
     newLoginData[field] = value;
     console.log(newLoginData);
     setLoginData(newLoginData);
-  };
-
-  const handleGoogleLogin = () => {
-    signInWithGoogle();
   };
 
   const handleSubmit = (e) => {
@@ -45,7 +41,6 @@ const Login = () => {
       handleSubmit={handleSubmit}
       handleLoginData={handleLoginData}
       loading={loading}
-      handleGoogleLogin={handleGoogleLogin}
       error={error}
       text="login"
       link="not an account? sign up"

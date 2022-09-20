@@ -1,15 +1,20 @@
 import React from "react";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Input = ({
   handleSubmit,
   handleLoginData,
   loading,
-  handleGoogleLogin,
   error,
   text,
   link,
 }) => {
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const handleGoogleLogin = () => {
+    signInWithGoogle();
+  };
   return (
     <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
       <h2 className="text-lg font-semibold text-black-500 text-center mb-4 text-red-900">
@@ -50,8 +55,7 @@ const Input = ({
         )}
         <input
           type="submit"
-          placeholder="password"
-          className="rounded-full font-bold text-white text-black-500 w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-700 m-3 cursor-pointer"
+          className="rounded-full font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:text-amber-700 m-3 cursor-pointer"
         />
       </form>
 
@@ -69,7 +73,7 @@ const Input = ({
         >
           <i className="fab fa-google mx-px text-green-500  bg-white border rounded-full p-2 bg"></i>
 
-          <span className="mx-3 text-sm font-bold text-white ">
+          <span className="mx-3 text-sm font-semibold text-white ">
             Continue with Google
           </span>
         </button>
@@ -82,13 +86,13 @@ const Input = ({
       )}
       {text === "login" ? (
         <Link to="/signup">
-          <h2 className="text-blue-800 text-center text-sm mt-2 mb-1 ">
+          <h2 className="text-blue-800 hover:text-red-700 text-center text-sm mt-4 mb-3 hover:capitalize">
             {link}
           </h2>
         </Link>
       ) : (
         <Link to="/login">
-          <h2 className="text-blue-800 text-center text-sm mt-2 mb-1 ">
+          <h2 className="text-blue-800 hover:text-red-700 text-center text-sm mt-4 mb-3 hover:capitalize">
             {link}
           </h2>
         </Link>

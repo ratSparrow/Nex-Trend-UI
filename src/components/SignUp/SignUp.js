@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  useCreateUserWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Input from "../Input/Input";
@@ -12,7 +9,6 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [createUserWithEmailAndPassword, user, loading] =
     useCreateUserWithEmailAndPassword(auth);
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const navigate = useNavigate();
 
   const handleLoginData = (e) => {
@@ -35,9 +31,6 @@ const SignUp = () => {
     }
     createUserWithEmailAndPassword(loginData.email, loginData.password);
   };
-  const handleGoogleLogin = () => {
-    signInWithGoogle();
-  };
 
   if (user) {
     navigate("/inventory");
@@ -48,10 +41,9 @@ const SignUp = () => {
       handleSubmit={handleSubmit}
       handleLoginData={handleLoginData}
       loading={loading}
-      handleGoogleLogin={handleGoogleLogin}
       error={error}
       text="signup"
-      link="Already have an account? login..."
+      link="already have an account? please login"
     />
   );
 };
