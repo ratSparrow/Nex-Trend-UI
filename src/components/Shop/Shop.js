@@ -41,8 +41,8 @@ const Shop = () => {
     addToDb(product.key);
   };
   return (
-    <>
-      <div className="text-center bg-emerald-800 mb-4">
+    <div>
+      <div className=" text-center bg-emerald-800 mb-4">
         <input
           required
           onChange={handleSearch}
@@ -73,7 +73,7 @@ const Shop = () => {
           </Cart>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
