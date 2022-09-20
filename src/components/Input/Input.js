@@ -11,8 +11,8 @@ const Input = ({
   link,
 }) => {
   return (
-    <>
-      <h2 className="text-lg font-semibold text-black-500 text-center mb-4">
+    <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
+      <h2 className="text-lg font-semibold text-black-500 text-center mb-4 text-red-900">
         {text}
       </h2>
       <form
@@ -67,12 +67,11 @@ const Input = ({
           onClick={handleGoogleLogin}
           className="flex mx-auto bg-blue-600 justify-between rounded-full items-center hover:bg-blue-800"
         >
-          <h1>
-            <i className="fab fa-google mx-px text-green-500  bg-white border rounded-full p-2 bg"></i>
-          </h1>
-          <h1 className="mx-3 text-sm font-bold text-white ">
+          <i className="fab fa-google mx-px text-green-500  bg-white border rounded-full p-2 bg"></i>
+
+          <span className="mx-3 text-sm font-bold text-white ">
             Continue with Google
-          </h1>
+          </span>
         </button>
       </div>
 
@@ -94,7 +93,7 @@ const Input = ({
           </h2>
         </Link>
       )}
-    </>
+    </div>
   );
 };
 

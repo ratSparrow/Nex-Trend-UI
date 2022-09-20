@@ -44,19 +44,15 @@ const SignUp = () => {
   }
 
   return (
-    <>
-      <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
-        <Input
-          handleSubmit={handleSubmit}
-          handleLoginData={handleLoginData}
-          loading={loading}
-          handleGoogleLogin={handleGoogleLogin}
-          error={error}
-          text="signup"
-          link="Already have an account? login..."
-        />
-      </div>
-    </>
+    <Input
+      handleSubmit={handleSubmit}
+      handleLoginData={handleLoginData}
+      loading={loading}
+      handleGoogleLogin={handleGoogleLogin}
+      error={error}
+      text="signup"
+      link="Already have an account? login..."
+    />
   );
 };
 

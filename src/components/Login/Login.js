@@ -3,7 +3,7 @@ import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Input from "../Input/Input";
 import "./Login.css";
@@ -13,7 +13,10 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleLoginData = (e) => {
     const field = e.target.name;
@@ -34,21 +37,19 @@ const Login = () => {
   };
 
   if (user) {
-    navigate("/shop");
+    navigate(from, { replace: true });
   }
 
   return (
-    <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
-      <Input
-        handleSubmit={handleSubmit}
-        handleLoginData={handleLoginData}
-        loading={loading}
-        handleGoogleLogin={handleGoogleLogin}
-        error={error}
-        text="login"
-        link="not an account? sign up"
-      />
-    </div>
+    <Input
+      handleSubmit={handleSubmit}
+      handleLoginData={handleLoginData}
+      loading={loading}
+      handleGoogleLogin={handleGoogleLogin}
+      error={error}
+      text="login"
+      link="not an account? sign up"
+    />
   );
 };
 
