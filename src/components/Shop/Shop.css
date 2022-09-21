@@ -9,6 +9,7 @@
 .shop-container {
   display: grid;
   grid-template-columns: 3fr 1fr;
+  grid-gap: 3;
 }
 
 .product-container {

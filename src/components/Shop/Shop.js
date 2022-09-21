@@ -53,9 +53,8 @@ const Shop = () => {
         />
       </div>
 
-      <div className="shop-container">
-        <div className="product-container">
-          <h3>Products: </h3>
+      <div className="flex justify-between">
+        <div className="grid gap-2 grid-cols-3 grid-rows-3 m-2">
           {displayProduct.map((product) => (
             <Product
               key={product.key}
@@ -65,7 +64,7 @@ const Shop = () => {
           ))}
         </div>
 
-        <div className="cart-container">
+        <div className="cart-container border-l-2 border-black relative">
           <Cart key={cart.key} cart={cart}>
             <Link to="/orders">
               <button className="btn-regular">Review Order</button>

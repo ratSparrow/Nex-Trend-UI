@@ -1,7 +1,9 @@
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import "./Cart.css";
 
 const Cart = (props) => {
+  const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
   let total = 0;
   let totalQuantity = 0;
   for (const product of props.cart) {
@@ -17,12 +19,24 @@ const Cart = (props) => {
   const tax = (total + shipping) * 0.1;
   const grandTotal = total + shipping + tax;
   return (
-    <div>
-      <h3>Order Summary: </h3>
-      <h5>Items Order: {totalQuantity}</h5>
-      <h5>Total: {total.toFixed(2)}</h5>
-      <h5>Shipping: {shipping.toFixed(2)}</h5>
-      <h5>Grand Total:{grandTotal.toFixed(2)} </h5>
+    <div className="mx-8 sticky top-0">
+      <h3 className="text-center text-teal-800 font-semibold text-xl my-4 border-b-2 border-teal-800">
+        Order Summary
+      </h3>
+
+      <h5 className="text-sky-900 font-semibold mb-2">
+        Order : {totalQuantity}
+      </h5>
+
+      <h5 className="text-orange-700 font-semibold mb-2">
+        Amount : {total.toFixed(2)} {dollarSign}
+      </h5>
+      <h5 className="text-orange-700 font-semibold mb-2">
+        Shipping : {shipping.toFixed(2)} {dollarSign}
+      </h5>
+      <h5 className="text-orange-700 font-semibold mb-2">
+        Total : {grandTotal.toFixed(2)} {dollarSign}
+      </h5>
       {props.children}
     </div>
   );
