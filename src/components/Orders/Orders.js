@@ -12,9 +12,9 @@ const Orders = () => {
   const [cart, setCart] = useCart(products);
 
   const handleRemove = (product) => {
-    const rest = cart.filter((pd) => pd.key !== product.key);
+    const rest = cart.filter((pd) => pd._id !== product._id);
     setCart(rest);
-    removeFromDb(product.key);
+    removeFromDb(product._id);
   };
 
   return (

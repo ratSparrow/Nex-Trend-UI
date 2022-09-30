@@ -1,26 +1,45 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
 
 const Shipment = () => {
-  const [loginData, setLoginData] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const [products] = useProducts();
   const [cart] = useCart(products);
-  console.log(cart);
-
-  // const navigate = useNavigate();
+  const [user] = useAuthState(auth);
 
   const handleLoginData = (e) => {
     const field = e.target.name;
     const value = e.target.value;
-    const newLoginData = { ...loginData };
-    newLoginData[field] = value;
-    setLoginData(newLoginData);
+    const newUserInfo = { ...userInfo };
+    newUserInfo[field] = value;
+    setUserInfo(newUserInfo);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginData, cart);
+    const data = {
+      user: userInfo,
+      order: cart,
+    };
+    console.log(data);
+    fetch("http://localhost:5000/shipping", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.insertedId) {
+          alert("User Added Successfully");
+        }
+      });
+    setUserInfo();
   };
 
   return (
@@ -34,45 +53,47 @@ const Shipment = () => {
       >
         <input
           required
-          onClick={handleLoginData}
+          readOnly
+          onBlur={handleLoginData}
           type="text"
           name="name"
-          placeholder="Type Your Name"
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
-                w-3/4 border"
+          value={user?.displayName}
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border"
         />
         <input
           required
-          onClick={handleLoginData}
+          readOnly
+          onBlur={handleLoginData}
           type="email"
           name="email"
-          placeholder="Type Your Email"
+          value={user?.email}
           className="rounded bg-white p-1 mx-auto hover:border-lime-300
-                w-3/4 border"
+                w-full border"
         />
-        <input
+        <textarea
           required
           onChange={handleLoginData}
           type="text"
           name="address"
-          placeholder="Type Your Address"
+          rows="4"
+          cols="50"
+          placeholder=" Your Address"
           className="rounded bg-white p-1 mx-auto hover:border-lime-300
-            w-3/4 border"
+          w-full border"
         />
         <input
           required
           onChange={handleLoginData}
           type="text"
           name="phone"
-          placeholder="Type Your Phone Number"
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
-            w-3/4 border"
+          placeholder=" Phone "
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border"
         />
 
         <input
           type="submit"
           value="Add Shipping"
-          className="rounded font-semibold text-white  w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:text-amber-900 m-3 cursor-pointer"
+          className="rounded font-semibold text-white  w-full mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:rounded-full m-3 cursor-pointer"
         />
       </form>
     </div>
