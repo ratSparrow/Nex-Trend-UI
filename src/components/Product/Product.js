@@ -51,7 +51,7 @@ const Product = ({ product, handleAddToCart }) => {
         <br />
         <button
           onClick={() => handleAddToCart(product)}
-          className="border w-full mt-2 text-center p-1 rounded bg-yellow-500 capitalize px-2 cursor-pointer"
+          className="border w-full mt-2 text-center p-1 rounded bg-yellow-500 capitalize  cursor-pointer"
         >
           {cartIcon} add to cart
         </button>

@@ -9,13 +9,14 @@ import "./Shop.css";
 const Shop = () => {
   const [products, displayProduct, setDisplayProduct] = useProducts();
   const [cart, setCart] = useState([]);
+ 
 
   const handleSearch = (e) => {
     const searchProduct = e.target.value;
     const matchProduct = products.filter((product) =>
       product.name.toLowerCase().includes(searchProduct.toLowerCase())
     );
-    console.log(matchProduct.length);
+
     setDisplayProduct(matchProduct);
   };
 
@@ -26,7 +27,7 @@ const Shop = () => {
 
       for (const key in savedCart) {
         const quantity = savedCart[key];
-        const addedProduct = products.find((product) => product.key === key);
+        const addedProduct = products.find((product) => product._id === key);
         addedProduct.quantity = quantity;
         storedCart.push(addedProduct);
       }
@@ -38,7 +39,7 @@ const Shop = () => {
     const newCart = [...cart, product];
 
     setCart(newCart);
-    addToDb(product.key);
+    addToDb(product._id);
   };
   return (
     <div>
@@ -48,7 +49,7 @@ const Shop = () => {
           onChange={handleSearch}
           placeholder="Search Product"
           type="text"
-          className="rounded text-center mb-2 mt-2 hover:border-lime-700
+          className="rounded ml-4 mb-2 mt-2 hover:border-lime-700
             w-3/4 border"
         />
       </div>
@@ -57,7 +58,7 @@ const Shop = () => {
         <div className="grid gap-2 grid-cols-3 grid-rows-3 m-2">
           {displayProduct.map((product) => (
             <Product
-              key={product.key}
+              key={product._id}
               product={product}
               handleAddToCart={handleAddToCart}
             ></Product>
@@ -65,7 +66,7 @@ const Shop = () => {
         </div>
 
         <div className="cart-container border-l-2 border-black relative">
-          <Cart key={cart.key} cart={cart}>
+          <Cart key={cart._id} cart={cart}>
             <Link to="/orders">
               <button className="btn-regular">Review Order</button>
             </Link>

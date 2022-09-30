@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import useCart from "../../hooks/useCart";
+import useProducts from "../../hooks/useProducts";
 
 const Shipment = () => {
   const [loginData, setLoginData] = useState({});
+  const [products] = useProducts();
+  const [cart] = useCart(products);
+  console.log(cart);
 
   // const navigate = useNavigate();
 
@@ -15,12 +20,12 @@ const Shipment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginData);
+    console.log(loginData, cart);
   };
 
   return (
     <div className="bg-slate-300 w-96 mx-auto p-5 rounded mt-10">
-      <h2 className=" font-semibold text-2xl text-center mb-5 text-red-900">
+      <h2 className=" font-semibold text-2xl text-center mb-5 text-red-900 ">
         Shipping Information
       </h2>
       <form

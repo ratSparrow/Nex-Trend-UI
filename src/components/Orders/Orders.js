@@ -10,6 +10,7 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 const Orders = () => {
   const [products] = useProducts();
   const [cart, setCart] = useCart(products);
+
   const handleRemove = (product) => {
     const rest = cart.filter((pd) => pd.key !== product.key);
     setCart(rest);
@@ -23,7 +24,7 @@ const Orders = () => {
           {cart.map((product) => (
             <ReviewItem
               product={product}
-              key={product.id}
+              key={product._id}
               handleRemove={handleRemove}
             />
           ))}

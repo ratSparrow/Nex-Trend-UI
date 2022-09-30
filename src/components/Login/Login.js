@@ -13,6 +13,7 @@ const Login = () => {
   const [signInWithEmailAndPassword, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [user] = useAuthState(auth);
+  console.log(user?.displayName);
 
   const navigate = useNavigate();
   const location = useLocation();
