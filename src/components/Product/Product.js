@@ -14,32 +14,26 @@ const Product = ({ product, handleAddToCart }) => {
   const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
 
   return (
-    <div className="border p-2 bg-slate-100 m-2">
-      <div>
-        <img
-          title={name}
-          className="w-2/3 mb-3 mx-auto rounded"
-          src={img}
-          alt=""
-        />
-      </div>
+    <div className="card shadow-xl">
+      <div className="card-body">
+        <figure>
+          <img src={img} alt="" />
+        </figure>
 
-      <div className="flex justify-center items-center flex-col">
-        <h4 title={name} className="text-rose-700 text-center">
-          {name.slice(0, 60)}...
-        </h4>
-        <p className="text-fuchsia-500 mt-2 capitalize">
-          <small>Vendor by {seller}</small>
-        </p>
-        <p className=" flex items-center mt-1">
+        <h5 className="card-title" title={name}>
+          {name.slice(0, 30)}...
+        </h5>
+        <h2>
+          <small>Seller by {seller}</small>
+        </h2>
+        <h2>
           <span className="text-fuchsia-500 mr-1">{dollarSign}</span>
-
           <span>{price}</span>
-        </p>
-        <p className="text-fuchsia-600 mt-1">
+        </h2>
+        <h2>
+          {" "}
           <small>Quantity: {stock} </small>
-        </p>
-
+        </h2>
         <Rating
           className="text-orange-400 mt-1"
           initialRating={star}
@@ -48,13 +42,12 @@ const Product = ({ product, handleAddToCart }) => {
           readonly
         />
 
-        <br />
-        <button
-          onClick={() => handleAddToCart(product)}
-          className="border w-full mt-2 text-center p-1 rounded bg-yellow-500 capitalize  cursor-pointer"
-        >
-          {cartIcon} add to cart
-        </button>
+        <div className="card-actions justify-end">
+          <br />
+          <button onClick={() => handleAddToCart(product)}>
+            {cartIcon} add cart
+          </button>
+        </div>
       </div>
     </div>
   );

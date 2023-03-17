@@ -1,45 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
 import auth from "../../firebase.init";
 import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
 
 const Shipment = () => {
-  const [userInfo, setUserInfo] = useState({});
   const [products] = useProducts();
   const [cart] = useCart(products);
   const [user] = useAuthState(auth);
 
-  const handleLoginData = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-    const newUserInfo = { ...userInfo };
-    newUserInfo[field] = value;
-    setUserInfo(newUserInfo);
-  };
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      user: userInfo,
+  const onSubmit = (data) => {
+    const info = {
+      userInfo: data,
       order: cart,
     };
-    console.log(data);
     fetch("http://localhost:5000/shipping", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(info),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data?.insertedId) {
           alert("User Added Successfully");
+          reset();
         }
       });
-    setUserInfo();
   };
 
   return (
@@ -47,53 +44,36 @@ const Shipment = () => {
       <h2 className=" font-semibold text-2xl text-center mb-5 text-red-900 ">
         Shipping Information
       </h2>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 gap-4 place-content-center "
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          required
-          readOnly
-          onBlur={handleLoginData}
-          type="text"
-          name="name"
-          value={user?.displayName}
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border"
-        />
-        <input
-          required
-          readOnly
-          onBlur={handleLoginData}
-          type="email"
-          name="email"
-          value={user?.email}
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
-                w-full border"
-        />
-        <textarea
-          required
-          onChange={handleLoginData}
-          type="text"
-          name="address"
-          rows="4"
-          cols="50"
-          placeholder=" Your Address"
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
-          w-full border"
-        />
-        <input
-          required
-          onChange={handleLoginData}
-          type="text"
-          name="phone"
-          placeholder=" Phone "
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border"
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full mb-3 border"
+          defaultValue={user.displayName}
+          {...register("Name")}
         />
 
         <input
-          type="submit"
-          value="Add Shipping"
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border mb-3"
+          defaultValue={user.email}
+          {...register("email")}
+        />
+
+        <textarea
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border"
+          placeholder="address"
+          {...register("address", { required: true })}
+        />
+
+        <input
+          className="rounded bg-white p-1 mx-auto hover:border-lime-300 w-full border mb-3"
+          placeholder="phone"
+          {...register("phone")}
+        />
+
+        {errors.exampleRequired && <span>This field is required</span>}
+
+        <input
           className="rounded font-semibold text-white  w-full mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:rounded-full m-3 cursor-pointer"
+          type="submit"
         />
       </form>
     </div>

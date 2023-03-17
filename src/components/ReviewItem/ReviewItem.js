@@ -8,7 +8,9 @@ const ReviewItem = ({ product, handleRemove }) => {
         <img src={img} alt="" />
       </div>
       <div>
-        <h4 className="product-name">{name}</h4>
+        <h4 title={name} className="product-name">
+          {name.slice(0, 60)}...
+        </h4>
         <p>
           <small>by {quantity}</small>
         </p>

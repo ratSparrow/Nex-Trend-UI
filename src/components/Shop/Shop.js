@@ -42,7 +42,7 @@ const Shop = () => {
     addToDb(product._id);
   };
   return (
-    <div>
+    <section>
       <div className=" text-center bg-emerald-800 mb-4">
         <input
           required
@@ -54,8 +54,8 @@ const Shop = () => {
         />
       </div>
 
-      <div className="flex justify-between">
-        <div className="grid gap-2 grid-cols-3 grid-rows-3 m-2">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid lg:col-span-2 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
           {displayProduct.map((product) => (
             <Product
               key={product._id}
@@ -73,7 +73,7 @@ const Shop = () => {
           </Cart>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
