@@ -64,6 +64,7 @@ const Navbar = () => {
             />
           </svg>
         </button>
+        <input type="checkbox" id="search-modal" className="modal-toggle" />
         <button className="btn btn-ghost btn-circle">
           <div className="indicator">
             <svg

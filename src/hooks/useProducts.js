@@ -4,7 +4,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [displayProduct, setDisplayProduct] = useState([]);
   const [page, setPage] = useState("shop");
-  const size = 10;
+  const size = 9;
 
   useEffect(() => {
     fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
