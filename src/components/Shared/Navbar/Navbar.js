@@ -1,7 +1,13 @@
 import React from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
+  const [signOut] = useSignOut(auth);
+
   const navItems = (
     <React.Fragment>
       <li>
@@ -11,6 +17,27 @@ const Navbar = () => {
       <li>
         <Link to="/about">About</Link>
       </li>
+      <li>
+        <Link to="/inventory">Inventory</Link>
+      </li>
+      {user ? (
+        <li>
+          <button
+            onClick={async () => {
+              const success = await signOut();
+              if (success) {
+                toast("You are sign out");
+              }
+            }}
+          >
+            Sign Out
+          </button>
+        </li>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </React.Fragment>
   );
 
