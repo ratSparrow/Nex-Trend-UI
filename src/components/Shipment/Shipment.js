@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import auth from "../../firebase.init";
 import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
@@ -9,6 +10,7 @@ const Shipment = () => {
   const [products] = useProducts();
   const [cart] = useCart(products);
   const [user] = useAuthState(auth);
+  console.log(cart);
 
   const {
     register,
@@ -18,22 +20,22 @@ const Shipment = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const info = {
-      userInfo: data,
-      order: cart,
+    const shipment = {
+      cart,
+      data,
     };
     fetch("http://localhost:5000/shipping", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(info),
+      body: JSON.stringify(shipment),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         if (data?.insertedId) {
-          alert("User Added Successfully");
+          toast("Shipping added successfully ");
           reset();
         }
       });
