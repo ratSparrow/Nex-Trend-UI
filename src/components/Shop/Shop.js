@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
-import { addToDb } from "../../utilities/fakedb";
+import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "./../Product/Product";
 import "./Shop.css";
@@ -19,31 +19,33 @@ const Shop = () => {
     setDisplayProduct(matchProduct);
   };
 
-  // useEffect(() => {
-  //   if (products.length) {
-  //     const savedCart = getStoredCart();
-  //     console.log(savedCart)
-  //     const storedCart = [];
+  useEffect(() => {
+    if (products.length) {
+      const savedCart = getStoredCart();
 
-  //     for (const key in savedCart) {
-  //       const quantity = savedCart[key];
-  //       const addedProduct = products.find((product) => product._id === key);
-  //       if(quantity){
-  //         addedProduct.quantity = quantity;
-  //         storedCart.push(addedProduct);
-  //       }
+      const storedCart = [];
 
-  //     }
-  //     setCart(storedCart);
-  //   }
-  // }, [products]);
+      for (const key in savedCart) {
+        const quantity = savedCart[key];
+        console.log(key);
+        const addedProduct = products.find((product) => product._id === key);
+        if (quantity) {
+          addedProduct.quantity = quantity;
+          storedCart.push(addedProduct);
+        }
+      }
+      setCart(storedCart);
+    }
+  }, [products]);
 
   const handleAddToCart = (product) => {
+    console.log(product);
     const newCart = [...cart, product];
 
     setCart(newCart);
     addToDb(product._id);
   };
+
   return (
     <section className="my-7 p-2">
       <h4 className="text-3xl text-secondary  text-center font-bold ">
@@ -60,7 +62,7 @@ const Shop = () => {
           ))}
         </div>
 
-        <div className="cart-container border-l-2 border-accent relative">
+        <div className="cart-container border-l-2 border-accent ">
           <Cart key={cart._id} cart={cart}>
             <Link to="/orders">
               <button className="btn-regular">Review Order</button>

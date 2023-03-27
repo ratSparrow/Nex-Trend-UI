@@ -7,7 +7,7 @@ import auth from "../../../firebase.init";
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-  
+  console.log(user);
 
   const navItems = (
     <React.Fragment>
@@ -36,6 +36,7 @@ const Navbar = () => {
               const success = await signOut();
               if (success) {
                 toast("You are sign out");
+                localStorage.removeItem("accessToken");
               }
             }}
           >

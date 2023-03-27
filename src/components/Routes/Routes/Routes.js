@@ -8,6 +8,7 @@ import Homepage from "../../Home/Homepage/Homepage";
 import Inventory from "../../Inventory/Inventory";
 import Login from "../../Login/Login";
 import Orders from "../../Orders/Orders";
+import Payment from "../../Payment/Payment";
 import ShowError from "../../Shared/ShowError/ShowError";
 import Shipment from "../../Shipment/Shipment";
 import SignUp from "../../SignUp/SignUp";
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Shipment />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <Payment />
           </PrivateRoute>
         ),
       },

@@ -38,9 +38,9 @@ const Orders = () => {
       )}
       <div className="cart-container">
         <Cart cart={cart}>
-          <Link to="/shipping">
+          <Link to="/payment">
             <button className="rounded w-full text-white text-black-500 mx-auto px-1 bg-green-500 p-1  hover:bg-green-700 m-3 cursor-pointer">
-              Proceed Shipping
+              Proceed Payment
             </button>
           </Link>
         </Cart>
