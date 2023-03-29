@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import useCart from "../../hooks/useCart";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 import useProducts from "../../hooks/useProducts";
+import useToken from "../../hooks/useToken";
 import { addToDb, getStoredCart } from "../../utilities/fakedb";
 import CartModal from "../CartModal/CartModal";
 import Product from "./../Product/Product";
@@ -10,7 +12,10 @@ import "./Shop.css";
 const Shop = () => {
   const [products, displayProduct, setDisplayProduct] = useProducts();
   const [cart, setCart] = useState([]);
-  const [isLoading, refetch] = useCart(products);
+  const [user] = useAuthState(auth);
+  const email = user?.email;
+  const [token] = useToken(email);
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     const searchProduct = e.target.value;
@@ -41,11 +46,13 @@ const Shop = () => {
   }, [products]);
 
   const handleAddToCart = (product) => {
-    console.log(product);
-    const newCart = [...cart, product];
-
-    setCart(newCart);
-    addToDb(product._id);
+    if (token) {
+      const newCart = [...cart, product];
+      setCart(newCart);
+      addToDb(product._id);
+    } else {
+      return navigate("/login");
+    }
   };
 
   return (

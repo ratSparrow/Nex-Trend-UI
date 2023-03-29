@@ -12,7 +12,6 @@ const Navbar = () => {
   const [products] = useProducts();
 
   const [cart] = useCart(products);
-  console.log(cart);
 
   const navItems = (
     <React.Fragment>

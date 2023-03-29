@@ -10,7 +10,7 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 const Orders = () => {
   const [products] = useProducts();
   const [cart, setCart] = useCart(products);
-  console.log(cart);
+ 
 
   const handleRemove = (product) => {
     const rest = cart.filter((pd) => pd._id !== product._id);
@@ -39,7 +39,7 @@ const Orders = () => {
       )}
       <div className="">
         <CartModal key={cart._id} cart={cart}>
-          <Link to="/orders">
+          <Link to="/payment">
             <button className="btn-regular">Proceed payment</button>
           </Link>
         </CartModal>
