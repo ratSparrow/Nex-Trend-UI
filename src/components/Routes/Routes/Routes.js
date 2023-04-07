@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardMain from "../../../Layout/DashboardMain";
 import Main from "../../../Layout/Main";
 import About from "../../About/About";
-import MyProducts from "../../Dashboard/MyProducts/MyProducts";
+import AllUser from "../../Dashboard/AllUser/AllUser";
 import UserReview from "../../Dashboard/UserReview/UserReview";
+import AddVendor from "../../Dashboard/Vendor/AddVendor/AddVendor";
 import Homepage from "../../Home/Homepage/Homepage";
 import Inventory from "../../Inventory/Inventory";
 import Login from "../../Login/Login";
@@ -12,6 +13,7 @@ import Payment from "../../Payment/Payment";
 import ShowError from "../../Shared/ShowError/ShowError";
 import Shipment from "../../Shipment/Shipment";
 import SignUp from "../../SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -81,11 +83,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <MyProducts />,
+        element: <UserReview />,
+      },
+
+      {
+        path: "/dashboard/user",
+        element: (
+          <AdminRoute>
+            <AllUser />
+          </AdminRoute>
+        ),
       },
       {
-        path: "/dashboard/review",
-        element: <UserReview />,
+        path: "/dashboard/addvendor",
+        element: (
+          <AdminRoute>
+            <AddVendor />
+          </AdminRoute>
+        ),
       },
     ],
   },

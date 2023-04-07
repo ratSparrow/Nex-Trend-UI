@@ -3,7 +3,7 @@ import router from "./components/Routes/Routes/Routes";
 
 function App() {
   return (
-    <div>
+    <div className="max-w-[1200px] mx-auto">
       <RouterProvider router={router} />
     </div>
   );
