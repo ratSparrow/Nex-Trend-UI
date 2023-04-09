@@ -4,6 +4,7 @@ import Main from "../../../Layout/Main";
 import About from "../../About/About";
 import AllUser from "../../Dashboard/AllUser/AllUser";
 import UserReview from "../../Dashboard/UserReview/UserReview";
+import AddProduct from "../../Dashboard/Vendor/AddProduct/AddProduct";
 import AddVendor from "../../Dashboard/Vendor/AddVendor/AddVendor";
 import Homepage from "../../Home/Homepage/Homepage";
 import Inventory from "../../Inventory/Inventory";
@@ -15,6 +16,7 @@ import Shipment from "../../Shipment/Shipment";
 import SignUp from "../../SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import VendorRoute from "../VendorRoute/VendorRoute";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +102,14 @@ const router = createBrowserRouter([
           <AdminRoute>
             <AddVendor />
           </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/addproduct",
+        element: (
+          <VendorRoute>
+            <AddProduct />
+          </VendorRoute>
         ),
       },
     ],

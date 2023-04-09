@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import useProducts from "../../hooks/useProducts";
@@ -27,14 +28,11 @@ const Shop = () => {
   };
 
   useEffect(() => {
+    const storedCart = [];
     if (products.length) {
       const savedCart = getStoredCart();
-
-      const storedCart = [];
-
       for (const key in savedCart) {
         const quantity = savedCart[key];
-        console.log(key);
         const addedProduct = products.find((product) => product._id === key);
         if (quantity) {
           addedProduct.quantity = quantity;
@@ -46,12 +44,18 @@ const Shop = () => {
   }, [products]);
 
   const handleAddToCart = (product) => {
-    if (token) {
-      const newCart = [...cart, product];
-      setCart(newCart);
-      addToDb(product._id);
+    const addedCart = cart?.find((p) => p._id === product._id);
+    if (addedCart) {
+      toast.error("Product has already been added");
+      return;
     } else {
-      return navigate("/login");
+      if (token) {
+        const newCart = [...cart, product];
+        setCart(newCart);
+        addToDb(product._id);
+      } else {
+        return navigate("/login");
+      }
     }
   };
 

@@ -4,10 +4,12 @@ import { Link, Outlet } from "react-router-dom";
 import Navbar from "../components/Shared/Navbar/Navbar";
 import auth from "../firebase.init";
 import useAdmin from "../hooks/useAdmin";
+import useVendor from "../hooks/useVendor";
 
 const DashboardMain = () => {
   const [user] = useAuthState(auth);
   const [isUserAdmin] = useAdmin(user?.email);
+  const [isVendor] = useVendor(user?.email);
   return (
     <React.Fragment>
       <Navbar />
@@ -23,6 +25,9 @@ const DashboardMain = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+            <li>
+              <Link to="/dashboard">Review</Link>
+            </li>
             {isUserAdmin ? (
               <React.Fragment>
                 <li>
@@ -31,12 +36,14 @@ const DashboardMain = () => {
                 <li>
                   <Link to="/dashboard/addVendor">Add Vendor</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard">Review</Link>
-                </li>
               </React.Fragment>
             ) : (
               <React.Fragment></React.Fragment>
+            )}
+            {isVendor && (
+              <li>
+                <Link to="/dashboard/addproduct">Add Product</Link>
+              </li>
             )}
           </ul>
         </div>
