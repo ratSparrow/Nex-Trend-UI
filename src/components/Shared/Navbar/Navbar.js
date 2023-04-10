@@ -4,14 +4,12 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import useCart from "../../../hooks/useCart";
-import useProducts from "../../../hooks/useProducts";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-  const [products] = useProducts();
 
-  const [cart] = useCart(products);
+  const [cart] = useCart();
 
   const navItems = (
     <React.Fragment>
@@ -54,15 +52,6 @@ const Navbar = () => {
       )}
     </React.Fragment>
   );
-
-  let totalQuantity = 0;
-  for (const product of cart) {
-    if (!product.quantity) {
-      product.quantity = 1;
-    }
-
-    totalQuantity = totalQuantity + product.quantity;
-  }
 
   return (
     <div className="navbar bg-base-100  ">
@@ -118,7 +107,7 @@ const Navbar = () => {
               />
             </svg>
             <span className="badge badge-accent badge-sm indicator-item">
-              {totalQuantity}
+              {cart.length}
             </span>
           </div>
         </label>

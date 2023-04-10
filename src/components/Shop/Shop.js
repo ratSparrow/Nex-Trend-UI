@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
 import useToken from "../../hooks/useToken";
-import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import { addToDb, removeFromDb } from "../../utilities/fakedb";
 import CartModal from "../CartModal/CartModal";
 import Product from "./../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
   const [products, displayProduct, setDisplayProduct] = useProducts("shop");
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useCart(products);
   const [user] = useAuthState(auth);
   const email = user?.email;
   const [token] = useToken(email);
@@ -31,25 +32,10 @@ const Shop = () => {
     console.log(id);
 
     const removeProduct = cart.filter((prod) => prod._id !== id);
-    console.log(removeProduct);
-    setCart(removeProduct);
-  };
 
-  useEffect(() => {
-    const storedCart = [];
-    if (products.length) {
-      const savedCart = getStoredCart();
-      for (const key in savedCart) {
-        const quantity = savedCart[key];
-        const addedProduct = products.find((product) => product._id === key);
-        if (quantity) {
-          addedProduct.quantity = quantity;
-          storedCart.push(addedProduct);
-        }
-      }
-      setCart(storedCart);
-    }
-  }, [products]);
+    setCart(removeProduct);
+    removeFromDb(id);
+  };
 
   const handleAddToCart = (product) => {
     const addedCart = cart?.find((p) => p._id === product._id);
@@ -60,7 +46,7 @@ const Shop = () => {
       if (token) {
         const newCart = [...cart, product];
         setCart(newCart);
-        addToDb(product._id);
+        addToDb(product);
       } else {
         return navigate("/login");
       }

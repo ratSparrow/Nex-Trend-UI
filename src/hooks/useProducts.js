@@ -10,7 +10,6 @@ const useProducts = (page) => {
     fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setProducts(data);
         setDisplayProduct(data);
       });
