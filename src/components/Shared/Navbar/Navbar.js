@@ -99,9 +99,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <label
-          tabIndex={0}
-          className="btn btn-ghost btn-circle"
           htmlFor="cart-modal"
+          className="btn bg-white border-0 text-black hover:bg-white"
         >
           <div className="indicator">
             <svg

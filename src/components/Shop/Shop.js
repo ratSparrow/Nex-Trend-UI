@@ -11,20 +11,28 @@ import Product from "./../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, displayProduct, setDisplayProduct] = useProducts();
+  const [products, displayProduct, setDisplayProduct] = useProducts("shop");
   const [cart, setCart] = useState([]);
   const [user] = useAuthState(auth);
   const email = user?.email;
   const [token] = useToken(email);
   const navigate = useNavigate();
 
-  const handleSearch = (e) => {
-    const searchProduct = e.target.value;
-    const matchProduct = products.filter((product) =>
-      product.name.toLowerCase().includes(searchProduct.toLowerCase())
-    );
+  // const handleSearch = (e) => {
+  //   const searchProduct = e.target.value;
+  //   const matchProduct = products.filter((product) =>
+  //     product.name.toLowerCase().includes(searchProduct.toLowerCase())
+  //   );
 
-    setDisplayProduct(matchProduct);
+  //   setDisplayProduct(matchProduct);
+  // };
+
+  const handleRemove = (id) => {
+    console.log(id);
+
+    const removeProduct = cart.filter((prod) => prod._id !== id);
+    console.log(removeProduct);
+    setCart(removeProduct);
   };
 
   useEffect(() => {
@@ -76,7 +84,7 @@ const Shop = () => {
         </div>
 
         <div className="cart-container border-l-2 border-accent ">
-          <CartModal key={cart._id} cart={cart}>
+          <CartModal handleRemove={handleRemove} key={cart._id} cart={cart}>
             <Link to="/orders">
               <button className="btn-regular">Review Order</button>
             </Link>

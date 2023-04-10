@@ -1,8 +1,9 @@
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import Cart from "../Cart/Cart";
 
-const CartModal = ({ cart, children }) => {
+const CartModal = ({ cart, children, handleRemove }) => {
   const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
   let total = 0;
   let totalQuantity = 0;
@@ -13,30 +14,38 @@ const CartModal = ({ cart, children }) => {
     total = total + product.price * product.quantity;
     totalQuantity = totalQuantity + product.quantity;
   }
-
   const shipping = total > 0 ? 15 : 0;
   const tax = (total + shipping) * 0.1;
   const grandTotal = total + shipping + tax;
+
   return (
-    <div className="mx-8 sticky top-0">
+    <React.Fragment>
       <input type="checkbox" id="cart-modal" className="modal-toggle" />
-      <label htmlFor="cart-modal" className="modal cursor-pointer">
-        <label className="modal-box relative" htmlFor="cart-modal">
-          <h3 className="text-center text-teal-800 font-semibold text-xl my-4 border-b-2 border-teal-800">
-            Order Summary
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="cart-modal"
+            className="btn btn-sm btn-circle border-none hover:bg-white bg-white text-red-500 absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className=" text-amber-600 font-semibold text-2xl mb-4 ">
+            Shopping Cart
           </h3>
           {cart.map((p) => (
-            <div className="card w-full  bg-base-200 shadow-xl mb-7">
-              <div className="card-body">
-                <h2 className="">{p.name.slice(0, 20)}</h2>
-              </div>
-            </div>
+            <Cart cartProduct={p} handleRemove={handleRemove} key={p._id} />
           ))}
+
+          <h2 className="text-sm font-semibold">Sub Total</h2>
+          <h2 className="text-sm mb-5 font-semibold text-blue-500">
+            {grandTotal.toFixed(2)} {dollarSign} [USD]
+          </h2>
           {children}
-        </label>
-      </label>
-    </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
 export default CartModal;
+
