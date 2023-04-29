@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -51,7 +51,15 @@ const Shop = () => {
       }
     }
   };
-  
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/shipping/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+
   return (
     <section className="my-7 p-2">
       <h4 className="text-3xl text-secondary  text-center font-bold ">

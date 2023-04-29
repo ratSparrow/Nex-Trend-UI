@@ -11,15 +11,13 @@ const Payment = () => {
   const [products] = useProducts();
   const [cart] = useCart(products);
 
+  let total = 0;
   let totalAmount = 0;
-  let totalQuantity = 0;
   for (const product of cart) {
-    if (!product.quantity) {
-      product.quantity = 1;
-    }
-
-    totalAmount = totalAmount + product.price * product.quantity;
-    totalQuantity = totalQuantity + product.quantity;
+    total = total + product.price;
+    const shipping = total > 0 ? 15 : 0;
+    const tax = (total + shipping) * 0.1;
+    totalAmount = total + shipping + tax;
   }
   console.log(totalAmount);
 
