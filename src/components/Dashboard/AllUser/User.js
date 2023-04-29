@@ -30,6 +30,21 @@ const User = ({ user, index, refetch }) => {
         refetch();
       });
   };
+
+  const handleDeleteUser = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/user/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("User deleted Successfully");
+        refetch();
+      });
+  };
   return (
     <tbody>
       <tr>
@@ -62,7 +77,12 @@ const User = ({ user, index, refetch }) => {
           )}
         </td>
         <td>
-          <button className="btn  btn-danger text-white btn-xs">Delete</button>
+          <button
+            className="btn  btn-danger text-white btn-xs"
+            onClick={(id) => handleDeleteUser(user._id)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>
