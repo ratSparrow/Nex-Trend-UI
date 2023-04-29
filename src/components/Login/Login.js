@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
 import "./Login.css";
@@ -14,8 +14,6 @@ const Login = () => {
   const [token] = useToken(loginEmail);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
