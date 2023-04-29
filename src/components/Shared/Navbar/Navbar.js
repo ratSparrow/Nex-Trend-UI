@@ -8,7 +8,6 @@ import useCart from "../../../hooks/useCart";
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-
   const [cart] = useCart();
 
   const navItems = (

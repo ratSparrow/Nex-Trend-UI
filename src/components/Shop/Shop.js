@@ -12,8 +12,8 @@ import Product from "./../Product/Product";
 import "./Shop.css";
 
 const Shop = () => {
-  const [products, displayProduct, setDisplayProduct] = useProducts("shop");
-  const [cart, setCart] = useCart(products);
+  const [displayProduct] = useProducts("shop");
+  const [cart, setCart] = useCart();
   const [user] = useAuthState(auth);
   const email = user?.email;
   const [token] = useToken(email);
@@ -30,10 +30,9 @@ const Shop = () => {
 
   const handleRemove = (id) => {
     console.log(id);
-
-    const removeProduct = cart.filter((prod) => prod._id !== id);
-
-    setCart(removeProduct);
+    const remainingCart = cart.filter((p) => p._id !== id);
+    console.log(remainingCart);
+    setCart(remainingCart);
     removeFromDb(id);
   };
 
@@ -46,13 +45,13 @@ const Shop = () => {
       if (token) {
         const newCart = [...cart, product];
         setCart(newCart);
-        addToDb(product);
+        addToDb(product._id);
       } else {
         return navigate("/login");
       }
     }
   };
-
+  
   return (
     <section className="my-7 p-2">
       <h4 className="text-3xl text-secondary  text-center font-bold ">

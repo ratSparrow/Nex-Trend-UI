@@ -1,20 +1,32 @@
 import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import useCart from "../../hooks/useCart";
 import Cart from "../Cart/Cart";
 const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
 
-const CartModal = ({ children, handleRemove }) => {
+const CartModal = ({ children, handleRemove, cart }) => {
   let total = 0;
- 
-  const [cart] = useCart()
+  let grandTotal = 0;
+  for (const product of cart) {
+    total = total + product.price;
+    const shipping = total > 0 ? 15 : 0;
+    const tax = (total + shipping) * 0.1;
+    grandTotal = total + shipping + tax;
+  }
 
- 
+  const handleIncrease = (id) => {
+    console.log(id);
+    for (const product of cart) {
+      if (product._id === id) {
+        console.log();
+        grandTotal = grandTotal + product.price;
+      }
+    }
+  };
 
-  const shipping = total > 0 ? 15 : 0;
-  const tax = (total + shipping) * 0.1;
-  const grandTotal = total + shipping + tax;
+  const handleDecrease = (id) => {
+    console.log(id);
+  };
 
   return (
     <React.Fragment>
@@ -28,12 +40,14 @@ const CartModal = ({ children, handleRemove }) => {
             ✕
           </label>
           <h3 className=" text-amber-600 font-semibold text-2xl mb-4 ">
-            Shopping Cart
+            Shopping Cart {cart.length}
           </h3>
-         
+
           {cart?.map((prod) => (
             <Cart
               cartProduct={prod}
+              handleIncrease={handleIncrease}
+              handleDecrease={handleDecrease}
               handleRemove={handleRemove}
               key={prod._id}
             />
@@ -52,4 +66,3 @@ const CartModal = ({ children, handleRemove }) => {
 export default CartModal;
 
 
-/*  */

@@ -1,6 +1,9 @@
 import React from "react";
+import useCart from "../../hooks/useCart";
 
 const About = () => {
+  const [cart] = useCart();
+
   return (
     <div>
       <img
