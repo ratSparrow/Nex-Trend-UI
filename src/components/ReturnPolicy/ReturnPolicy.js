@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Privacy = () => {
+const ReturnPolicy = () => {
   const backButton = <FontAwesomeIcon icon={faChevronLeft} />;
   return (
     <div className="sm:mx-8 md:mx-8">
@@ -96,4 +96,4 @@ const Privacy = () => {
   );
 };
 
-export default Privacy;
+export default ReturnPolicy;
