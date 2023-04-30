@@ -12,7 +12,7 @@ import useToken from "../../hooks/useToken";
 const SignUp = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [createUserWithEmailAndPassword, loading] =
+  const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
   const navigate = useNavigate();
   const [updateProfile] = useUpdateProfile(auth);

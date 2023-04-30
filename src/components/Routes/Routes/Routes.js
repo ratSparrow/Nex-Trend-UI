@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardMain from "../../../Layout/DashboardMain";
 import Main from "../../../Layout/Main";
 import About from "../../About/About";
+import ConditionTerms from "../../ConditionTerms/ConditionTerms";
 import AllUser from "../../Dashboard/AllUser/AllUser";
 import UserReview from "../../Dashboard/UserReview/UserReview";
 import AddProduct from "../../Dashboard/Vendor/AddProduct/AddProduct";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/terms",
+        element: <ConditionTerms />,
       },
       {
         path: "/login",

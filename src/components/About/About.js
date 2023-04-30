@@ -8,13 +8,13 @@ import Third from "./Third";
 
 const About = () => {
   return (
-    <div className="md:px-4 sm:px-4">
+    <section className="md:px-4 sm:px-4">
       <Hero />
       <Second />
       <Third />
       <Fourth />
       <Newsletter />
-    </div>
+    </section>
   );
 };
 
