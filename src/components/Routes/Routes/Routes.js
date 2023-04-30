@@ -3,6 +3,7 @@ import DashboardMain from "../../../Layout/DashboardMain";
 import Main from "../../../Layout/Main";
 import About from "../../About/About";
 import ConditionTerms from "../../ConditionTerms/ConditionTerms";
+import ContactUs from "../../ContactUs/ContactUs";
 import AllUser from "../../Dashboard/AllUser/AllUser";
 import UserReview from "../../Dashboard/UserReview/UserReview";
 import AddProduct from "../../Dashboard/Vendor/AddProduct/AddProduct";
@@ -12,9 +13,11 @@ import Inventory from "../../Inventory/Inventory";
 import Login from "../../Login/Login";
 import Orders from "../../Orders/Orders";
 import Payment from "../../Payment/Payment";
+import Privacy from "../../Privacy/Privacy";
 import ShowError from "../../Shared/ShowError/ShowError";
 import Shipment from "../../Shipment/Shipment";
 import SignUp from "../../SignUp/SignUp";
+import Support from "../../Support/Support";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import VendorRoute from "../VendorRoute/VendorRoute";
@@ -34,8 +37,20 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
+        path: "/contact",
+        element: <ContactUs />,
+      },
+      {
         path: "/terms",
         element: <ConditionTerms />,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy />,
+      },
+      {
+        path: "/support",
+        element: <Support />,
       },
       {
         path: "/login",

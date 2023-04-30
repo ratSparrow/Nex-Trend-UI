@@ -19,9 +19,13 @@ const Footer = () => {
         <Link to="/terms" className="link link-hover">
           Terms & Conditions
         </Link>
-        <Link className="link link-hover">Contact</Link>
-        <Link className="link link-hover">Jobs</Link>
-        <Link className="link link-hover">Press kit</Link>
+        <Link to="/contact" className="link link-hover">
+          Contact Us
+        </Link>
+
+        <Link to="/privacy" className="link link-hover">
+          Privacy Policy
+        </Link>
       </div>
       <div>
         <span className="footer-title">Social</span>
