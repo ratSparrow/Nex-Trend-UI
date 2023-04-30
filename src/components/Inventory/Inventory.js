@@ -1,10 +1,7 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
-import auth from "../../firebase.init";
 
 const Inventory = () => {
-  const [user] = useAuthState(auth);
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -24,7 +21,8 @@ const Inventory = () => {
       </h2>
       <div className="grid lg:grid-cols-4 gap-6 grid-cols-1 md:grid-cols-3  mt-6 ">
         {products.map((product) => (
-          <div className="card shadow-xl image-full">
+          <div key={product._id} className="card shadow-xl image-full">
+            {console.log(product)}
             <figure>
               <img src={product.img} alt="Shoes" />
             </figure>

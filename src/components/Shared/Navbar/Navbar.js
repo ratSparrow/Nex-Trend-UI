@@ -85,6 +85,7 @@ const Navbar = () => {
           E-MART
         </Link>
       </div>
+
       <div className="navbar-end">
         <label
           htmlFor="cart-modal"
