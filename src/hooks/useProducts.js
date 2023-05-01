@@ -7,7 +7,7 @@ const useProducts = (page) => {
   const size = 9;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
+    fetch(`https://e-server-eta.vercel.app/products?page=${page}&&size=${size}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

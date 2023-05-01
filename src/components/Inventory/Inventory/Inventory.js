@@ -7,7 +7,7 @@ const Inventory = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const result = await fetch("http://localhost:5000/products");
+      const result = await fetch("https://e-server-eta.vercel.app/products");
       const data = await result.json();
       return data;
     },

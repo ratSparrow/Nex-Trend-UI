@@ -8,7 +8,7 @@ const useVendor = (email) => {
     console.log(email);
     setVendoLoading(true);
     if (email) {
-      fetch(`http://localhost:5000/user/vendor/${email}`)
+      fetch(`https://e-server-eta.vercel.app/user/vendor/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

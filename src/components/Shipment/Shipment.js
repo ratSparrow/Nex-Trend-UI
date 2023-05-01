@@ -24,7 +24,7 @@ const Shipment = () => {
       cart,
       data,
     };
-    fetch("http://localhost:5000/shipping", {
+    fetch("https://e-server-eta.vercel.app/shipping", {
       method: "POST",
       headers: {
         "content-type": "application/json",

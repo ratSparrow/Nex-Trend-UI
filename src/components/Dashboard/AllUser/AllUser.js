@@ -10,7 +10,7 @@ const AllUser = () => {
   } = useQuery({
     queryKey: ["alluser"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/user");
+      const res = await fetch("https://e-server-eta.vercel.app/user");
       const data = await res.json();
       return data;
     },

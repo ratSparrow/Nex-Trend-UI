@@ -37,7 +37,7 @@ const AddProduct = () => {
             img: imgData.data.url,
           };
           console.log(newProduct);
-          fetch("http://localhost:5000/products", {
+          fetch("https://e-server-eta.vercel.app/products", {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -36,7 +36,7 @@ const SignUp = () => {
 
   const saveUserDb = (email, name) => {
     const user = { email, name };
-    fetch("http://localhost:5000/user", {
+    fetch("https://e-server-eta.vercel.app/user", {
       method: "POST",
       headers: {
         "content-type": "application/json",

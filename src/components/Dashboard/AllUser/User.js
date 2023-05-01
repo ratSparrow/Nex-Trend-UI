@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 
 const User = ({ user, index, refetch }) => {
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/user/admin/${id}`, {
+    fetch(`https://e-server-eta.vercel.app/user/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -18,7 +18,7 @@ const User = ({ user, index, refetch }) => {
   };
 
   const handleVendorStatus = (id) => {
-    fetch(`http://localhost:5000/user/vendor/${id}`, {
+    fetch(`https://e-server-eta.vercel.app/user/vendor/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -33,7 +33,7 @@ const User = ({ user, index, refetch }) => {
 
   const handleDeleteUser = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/user/${id}`, {
+    fetch(`https://e-server-eta.vercel.app/user/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

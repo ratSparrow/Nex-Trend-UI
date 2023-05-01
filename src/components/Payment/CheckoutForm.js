@@ -14,7 +14,7 @@ const CheckoutForm = ({ cart, totalAmount }) => {
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://e-server-eta.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const CheckoutForm = ({ cart, totalAmount }) => {
         email: user.email,
         name: user.displayName,
       };
-      fetch("http://localhost:5000/shipping", {
+      fetch("https://e-server-eta.vercel.app/shipping", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
