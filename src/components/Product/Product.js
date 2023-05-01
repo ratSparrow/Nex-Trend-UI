@@ -41,11 +41,13 @@ const Product = ({ product, handleAddToCart }) => {
           fullSymbol="fas fa-star"
           readonly
         />
-
         <div className="card-actions justify-end">
           <br />
-          <button onClick={() => handleAddToCart(product)}>
-            {cartIcon} add cart
+          <button
+            className=" border hover:border-red-700 rounded p-2 "
+            onClick={() => handleAddToCart(product)}
+          >
+            {cartIcon}
           </button>
         </div>
       </div>

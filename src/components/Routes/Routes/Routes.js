@@ -10,7 +10,8 @@ import AddProduct from "../../Dashboard/Vendor/AddProduct/AddProduct";
 import AddVendor from "../../Dashboard/Vendor/AddVendor/AddVendor";
 import Faq from "../../Faq/Faq";
 import Homepage from "../../Home/Homepage/Homepage";
-import Inventory from "../../Inventory/Inventory";
+
+import Inventory from "../../Inventory/Inventory/Inventory";
 import Login from "../../Login/Login";
 import Orders from "../../Orders/Orders";
 import Payment from "../../Payment/Payment";
