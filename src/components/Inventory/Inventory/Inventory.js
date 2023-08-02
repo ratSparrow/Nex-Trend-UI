@@ -22,9 +22,9 @@ const Inventory = () => {
         More Products
       </h2>
       <div className="grid grid-cols-6 gap-4 mt-10">
-        <div>
+        <React.Fragment>
           <CategoryList />
-        </div>
+        </React.Fragment>
         <div className="mx-auto col-start-3 col-span-6 ">
           <div className="grid lg:grid-cols-3 gap-4 sm:grid-cols-1 md:grid-cols-2  mt-6 ">
             {products.map((product) => (

@@ -4,6 +4,8 @@ import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import useCart from "../../../hooks/useCart";
+import "./Navbar.css";
+import Assistant from "../Assistant/Assistant";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -108,16 +110,16 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <div className="navbar-center">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          E-MART
+      <h3 className="navbar-center header-title">
+        <Link to="/" className="normal-case text-xl ">
+          Digi-Mart
         </Link>
-      </div>
+      </h3>
 
-      <div className="navbar-end">
+      <div className="navbar-end ">
         <label
           htmlFor="cart-modal"
-          className="btn bg-white border-0 text-black hover:bg-white"
+          className="btn hover:bg-white bg-white border-0 text-red-400 text-2xl"
         >
           <div className="indicator">
             <svg
@@ -134,18 +136,17 @@ const Navbar = () => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span className="badge badge-accent badge-sm indicator-item">
+            <span className="badge text-red-400 bg-white border-none badge-sm indicator-item">
               {cart.length}
             </span>
           </div>
         </label>
       </div>
+
+      <Assistant></Assistant>
+
       <div className="navbar-end">
-        <label
-          tabIndex={2}
-          htmlFor="dashboard-drawer"
-          className="btn  drawer-button lg:hidden"
-        >
+        <label tabIndex={2} htmlFor="dashboard-drawer" className="lg:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

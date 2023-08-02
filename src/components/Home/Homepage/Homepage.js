@@ -1,12 +1,12 @@
 import React from "react";
 import Shop from "../../Shop/Shop";
-import Banner from "../Banner/Banner";
+import Hero from "../Hero/Hero";
 import Testimonials from "../Testimonials/Testimonials";
 
 const Homepage = () => {
   return (
     <section>
-      <Banner />
+      <Hero />
       <Shop />
       <Testimonials />
     </section>
