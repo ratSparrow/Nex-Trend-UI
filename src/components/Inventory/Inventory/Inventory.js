@@ -17,7 +17,7 @@ const Inventory = () => {
   }
 
   return (
-    <React.Fragment>
+    <section className=" max-w-[1200px] mx-auto">
       <h2 className="text-3xl font-semibold text-emerald-900 mb-10 pb-5 ">
         More Products
       </h2>
@@ -33,7 +33,7 @@ const Inventory = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </section>
   );
 };
 

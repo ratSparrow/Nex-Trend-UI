@@ -10,7 +10,6 @@ import ReviewItem from "../ReviewItem/ReviewItem";
 const Orders = () => {
   const [products] = useProducts();
   const [cart, setCart] = useCart(products);
- 
 
   const handleRemove = (product) => {
     const rest = cart.filter((pd) => pd._id !== product._id);
@@ -19,7 +18,7 @@ const Orders = () => {
   };
 
   return (
-    <div className="">
+    <div className="  max-w-[1200px] mx-auto">
       {cart.length > 0 ? (
         <div className="product-container">
           {cart.map((product) => (

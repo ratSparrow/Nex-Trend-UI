@@ -11,7 +11,7 @@ const DashboardMain = () => {
   const [isUserAdmin] = useAdmin(user?.email);
   const [isVendor] = useVendor(user?.email);
   return (
-    <React.Fragment>
+    <section className=" max-w-[1200px] mx-auto">
       <Navbar />
       <div className="drawer drawer-mobile">
         <input
@@ -48,7 +48,7 @@ const DashboardMain = () => {
           </ul>
         </div>
       </div>
-    </React.Fragment>
+    </section>
   );
 };
 

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ConditionTerms = () => {
   const backButton = <FontAwesomeIcon icon={faChevronLeft} />;
   return (
-    <div className="mx-8">
+    <div className=" max-w-[1200px] mx-auto">
       <Link to="/">
         <button>{backButton} Back</button>
       </Link>

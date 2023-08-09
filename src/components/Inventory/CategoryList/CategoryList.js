@@ -38,7 +38,7 @@ const categories = [
 
 const CategoryList = () => {
   return (
-    <div className="category-container p-2">
+    <div className="category-container p-1">
       <h2 className="text-md font-semibold text-center bg-black rounded py-1 m-0 text-white">
         TOP CATEGORIES
       </h2>

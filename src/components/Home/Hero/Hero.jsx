@@ -5,7 +5,7 @@ import Machinery from "../Machinery/Machinery";
 
 const Hero = () => {
   return (
-    <section className="grid sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-2 ">
+    <section className="grid sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-6 gap-2 mb-4">
       <section className=" md:block lg:block">
         <CategoryList />
       </section>

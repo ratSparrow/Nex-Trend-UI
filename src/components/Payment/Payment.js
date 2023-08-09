@@ -22,7 +22,7 @@ const Payment = () => {
   console.log(totalAmount);
 
   return (
-    <div>
+    <div className=" max-w-[1200px] mx-auto">
       <p className="text-xl">
         Please pay <strong>${totalAmount}</strong> for your product.
       </p>

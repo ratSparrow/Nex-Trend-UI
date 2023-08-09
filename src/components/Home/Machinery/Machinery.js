@@ -40,7 +40,7 @@ export default function Machinery() {
       </div>
       <div>
         <button className="bg-[#FF8C2E] mx-auto rounded-md py-1 font-semibold text-white w-full text-sm mt-2">
-          <Link to="/cmoing-soon">Selected Machinery</Link>
+          <Link to="/coming-soon">Selected Machinery</Link>
         </button>
       </div>
     </div>

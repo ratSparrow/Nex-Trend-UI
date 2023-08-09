@@ -95,7 +95,7 @@ const supportInfo = [
 
 const Support = () => {
   return (
-    <section className="mx-8 ">
+    <section className=" max-w-[1200px] mx-auto">
       <div className="flex justify-between items-center my-6 ">
         {" "}
         <h2 className="text-2xl font-bold">Choose Your Support Tag</h2>

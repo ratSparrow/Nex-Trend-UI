@@ -8,7 +8,7 @@ import Third from "./Third";
 
 const About = () => {
   return (
-    <section className="md:px-4 sm:px-4">
+    <section className="md:px-4 sm:px-4  max-w-[1200px] mx-auto">
       <Hero />
       <Second />
       <Third />
