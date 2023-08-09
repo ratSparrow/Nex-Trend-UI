@@ -110,7 +110,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-      <h3 className="navbar-center header-title">
+      <h3 title="home" className="navbar-center header-title">
         <Link to="/" className="normal-case text-xl ">
           Digi-Mart
         </Link>
@@ -118,6 +118,7 @@ const Navbar = () => {
 
       <div className="navbar-end ">
         <label
+          title="cart"
           htmlFor="cart-modal"
           className="btn hover:bg-white bg-white border-0 text-red-400 text-2xl"
         >

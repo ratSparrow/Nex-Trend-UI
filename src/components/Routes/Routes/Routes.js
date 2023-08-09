@@ -25,6 +25,7 @@ import Ticket from "../../Ticket/Ticket";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import VendorRoute from "../VendorRoute/VendorRoute";
+import ComingSoon from "../../ComingSoon/ComingSoon";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/faq",
         element: <Faq />,
+      },
+      {
+        path: "/coming-soon",
+        element: <ComingSoon />,
       },
       {
         path: "/login",

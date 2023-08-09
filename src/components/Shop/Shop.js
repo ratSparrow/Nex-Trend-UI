@@ -8,7 +8,8 @@ import useProducts from "../../hooks/useProducts";
 import useToken from "../../hooks/useToken";
 import { addToDb, removeFromDb } from "../../utilities/fakedb";
 import CartModal from "../CartModal/CartModal";
-import Product from "./../Product/Product";
+import Product from "../Product/Product";
+
 import "./Shop.css";
 
 const Shop = () => {
@@ -21,11 +22,6 @@ const Shop = () => {
 
   // const handleSearch = (e) => {
   //   const searchProduct = e.target.value;
-  //   const matchProduct = products.filter((product) =>
-  //     product.name.toLowerCase().includes(searchProduct.toLowerCase())
-  //   );
-
-  //   setDisplayProduct(matchProduct);
   // };
 
   const handleRemove = (id) => {
@@ -53,42 +49,41 @@ const Shop = () => {
   };
 
   return (
-    <section className="my-7 p-2">
-      <h4 className="text-3xl text-secondary  text-center font-bold ">
-        Explore our Products
-      </h4>
-      <div className="grid ">
-        <div className="grid  gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
-          {displayProduct.map((product) => (
-            <Product
-              key={product._id}
-              product={product}
-              handleAddToCart={handleAddToCart}
-            ></Product>
-          ))}
+    <main className="bg-[#F5F6F7] py-5">
+      <section className=" p-2 max-w-[1200px] mx-auto">
+        <div className=" text-center mb-4">
+          <input
+            required
+            placeholder="Search Product"
+            type="text"
+            className="input rounded-sm input-accent w-1/2 input-sm"
+          />
         </div>
+        <h4 className="text-3xl text-[#C92127]  text-center font-bold ">
+          Our Featured Items
+        </h4>
+        <div className="grid ">
+          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6">
+            {displayProduct.map((product) => (
+              <Product
+                key={product._id}
+                product={product}
+                handleAddToCart={handleAddToCart}
+              ></Product>
+            ))}
+          </div>
 
-        <div className="cart-container border-l-2 border-accent ">
-          <CartModal handleRemove={handleRemove} key={cart._id} cart={cart}>
-            <Link to="/orders">
-              <button className="btn-regular">Review Order</button>
-            </Link>
-          </CartModal>
+          <div className="cart-container border-l-2 border-accent ">
+            <CartModal handleRemove={handleRemove} key={cart._id} cart={cart}>
+              <Link to="/orders">
+                <button className="btn-regular">Review Order</button>
+              </Link>
+            </CartModal>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 
 export default Shop;
-
-//   <div className=" text-center bg-emerald-800 mb-4">
-//   <input
-//     required
-//     onChange={handleSearch}
-//     placeholder="Search Product"
-//     type="text"
-//     className="rounded ml-4 mb-2 mt-2 hover:border-lime-700
-//       w-3/4 border"
-//   />
-// </div>
