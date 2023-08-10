@@ -6,11 +6,12 @@ import auth from "../../../firebase.init";
 import useCart from "../../../hooks/useCart";
 import "./Navbar.css";
 import Assistant from "../Assistant/Assistant";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-  const [cart] = useCart();
+  const { products } = useSelector((state) => state.cart);
 
   const navItems = (
     <React.Fragment>
@@ -141,7 +142,7 @@ const Navbar = () => {
               />
             </svg>
             <span className="badge text-red-400 bg-white border-none badge-sm indicator-item">
-              {cart.length}
+              {products.length}
             </span>
           </div>
         </label>

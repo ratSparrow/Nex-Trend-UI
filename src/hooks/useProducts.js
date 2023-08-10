@@ -4,7 +4,7 @@ const useProducts = (page) => {
   let [products, setProducts] = useState([]);
   let [displayProduct, setDisplayProduct] = useState([]);
 
-  const size = 9;
+  const size = 10;
 
   useEffect(() => {
     fetch(`https://e-server-eta.vercel.app/products?page=${page}&&size=${size}`)

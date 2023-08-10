@@ -1,51 +1,32 @@
 import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
+import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
-import useToken from "../../hooks/useToken";
-import { addToDb, removeFromDb } from "../../utilities/fakedb";
+import { addToDb } from "../../utilities/fakedb";
 import CartModal from "../CartModal/CartModal";
 import Product from "../Product/Product";
-
 import "./Shop.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const Shop = () => {
-  const [displayProduct] = useProducts("shop");
-  const [cart, setCart] = useCart();
-  const [user] = useAuthState(auth);
-  const email = user?.email;
-  const [token] = useToken(email);
-  const navigate = useNavigate();
+  const [displayProduct, setDisplayProduct] = useProducts("shop");
+  const [cart] = useCart();
 
-  // const handleSearch = (e) => {
-  //   const searchProduct = e.target.value;
-  // };
+  const dispatch = useDispatch();
 
-  const handleRemove = (id) => {
-    console.log(id);
-    const remainingCart = cart.filter((p) => p._id !== id);
-    console.log(remainingCart);
-    setCart(remainingCart);
-    removeFromDb(id);
+  const handleSearch = (e) => {
+    const searchProduct = e.target.value.toLowerCase();
+    console.log(searchProduct);
+    const resultsProduct = displayProduct.filter((product) =>
+      product.name.toLowerCase().includes(searchProduct)
+    );
+    console.log(setDisplayProduct(resultsProduct));
   };
 
   const handleAddToCart = (product) => {
-    const addedCart = cart?.find((p) => p._id === product._id);
-    if (addedCart) {
-      toast.error("Product has already been added");
-      return;
-    } else {
-      if (token) {
-        const newCart = [...cart, product];
-        setCart(newCart);
-        addToDb(product._id);
-      } else {
-        return navigate("/login");
-      }
-    }
+    dispatch(addToCart(product));
+    addToDb(product._id);
   };
 
   return (
@@ -54,6 +35,7 @@ const Shop = () => {
         <div className=" text-center mb-4">
           <input
             required
+            onChange={handleSearch}
             placeholder="Search Product"
             type="text"
             className="input rounded-sm input-accent w-1/2 input-sm"
@@ -74,7 +56,7 @@ const Shop = () => {
           </div>
 
           <div className="cart-container border-l-2 border-accent ">
-            <CartModal handleRemove={handleRemove} key={cart._id} cart={cart}>
+            <CartModal key={cart._id} cart={cart}>
               <Link to="/orders">
                 <button className="btn-regular">Review Order</button>
               </Link>
