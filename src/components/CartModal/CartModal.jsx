@@ -2,10 +2,12 @@ import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
 
 const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
 
 const CartModal = ({ children, handleRemove, cart }) => {
+  const { products } = useSelector((state) => state.cart);
   let total = 0;
   let grandTotal = 0;
   for (const product of cart) {
@@ -30,7 +32,7 @@ const CartModal = ({ children, handleRemove, cart }) => {
             Shopping Cart
           </h3>
 
-          <Cart />
+          <Cart products={products} />
           <h2 className="text-sm font-semibold">Sub Total</h2>
           <h2 className="text-sm mb-5 font-semibold text-blue-500">
             {grandTotal.toFixed(2)} {dollarSign} [USD]

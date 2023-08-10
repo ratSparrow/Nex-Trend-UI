@@ -2,14 +2,12 @@ import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Rating from "react-rating";
-import { useSelector } from "react-redux";
 
 const xmark = <FontAwesomeIcon icon={faXmark} />;
 const sub = <FontAwesomeIcon icon={faMinus} />;
 const add = <FontAwesomeIcon icon={faPlus} />;
 
-const Cart = () => {
-  const { products } = useSelector((state) => state.cart);
+const Cart = ({ products }) => {
   const handleRemove = (id) => {
     console.log(id);
   };
