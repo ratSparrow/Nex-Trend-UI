@@ -98,8 +98,7 @@ const CheckoutForm = ({ totalAmount }) => {
   };
   return (
     <React.Fragment>
-      {" "}
-      <form onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {

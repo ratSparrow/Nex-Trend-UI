@@ -13,12 +13,10 @@ const Payment = () => {
   const tax = (total + shipping) * 0.1;
   totalAmount = total + shipping + tax;
 
-  console.log(totalAmount);
-
   return (
     <div className=" max-w-[1200px] mx-auto">
       <p className="text-xl">
-        Please pay <strong>${totalAmount}</strong> for your product.
+        Please pay <strong>${totalAmount.toFixed(2)}</strong> for your product.
       </p>
       <div className="w-96 my-9">
         <Elements stripe={stripePromise}>

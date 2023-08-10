@@ -28,10 +28,7 @@ const Cart = ({ product }) => {
 
   return (
     <React.Fragment>
-      <div
-        key={product._id}
-        className=" w-full border-b-2 border-slate-300 mb-5"
-      >
+      <div className=" w-full border-b-2 border-slate-300 mb-5">
         <div className="m-1 grid grid-cols-3 gap-2">
           <figure className="">
             <img className="w-1/4 rounded" src={img} alt="" />

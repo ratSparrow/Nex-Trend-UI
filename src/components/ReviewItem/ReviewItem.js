@@ -3,7 +3,7 @@ import Rating from "react-rating";
 
 const ReviewItem = ({ product, handleRemove }) => {
   const { name, price, shipping, quantity, img, seller, stock, star } = product;
-
+  const totalPrice = Number(quantity * price).toFixed(2);
   return (
     <main className="product-container py-5 mx-2 rounded hover:border hover:border-red-400">
       <section className="flex justify-around items-center ">
@@ -37,7 +37,7 @@ const ReviewItem = ({ product, handleRemove }) => {
           </h2>
           <h2 className="text-red-600 font-bold">
             <i className="fa-solid fa-bangladeshi-taka-sign"></i>
-            <span> {price}</span>
+            <span> {totalPrice}</span>
           </h2>
           <h2 className="text-lg text-red-600 font-semibold">
             {" "}
