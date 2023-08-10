@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
-const CheckoutForm = ({ cart, totalAmount }) => {
+const CheckoutForm = ({ totalAmount }) => {
   const [user] = useAuthState(auth);
   const stripe = useStripe();
   const elements = useElements();

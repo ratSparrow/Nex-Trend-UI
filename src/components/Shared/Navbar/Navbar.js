@@ -3,7 +3,7 @@ import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
-import useCart from "../../../hooks/useCart";
+
 import "./Navbar.css";
 import Assistant from "../Assistant/Assistant";
 import { useSelector } from "react-redux";

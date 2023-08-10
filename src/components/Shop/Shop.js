@@ -1,19 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useCart from "../../hooks/useCart";
 import useProducts from "../../hooks/useProducts";
-import { addToDb } from "../../utilities/fakedb";
 import CartModal from "../CartModal/CartModal";
 import Product from "../Product/Product";
 import "./Shop.css";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/features/cart/cartSlice";
 
 const Shop = () => {
   const [displayProduct, setDisplayProduct] = useProducts("shop");
-  const [cart] = useCart();
-
-  const dispatch = useDispatch();
 
   const handleSearch = (e) => {
     const searchProduct = e.target.value.toLowerCase();
@@ -22,11 +15,6 @@ const Shop = () => {
       product.name.toLowerCase().includes(searchProduct)
     );
     console.log(setDisplayProduct(resultsProduct));
-  };
-
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    addToDb(product._id);
   };
 
   return (
@@ -47,16 +35,12 @@ const Shop = () => {
         <div className="grid ">
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6">
             {displayProduct.map((product) => (
-              <Product
-                key={product._id}
-                product={product}
-                handleAddToCart={handleAddToCart}
-              ></Product>
+              <Product key={product._id} product={product}></Product>
             ))}
           </div>
 
           <div className="cart-container border-l-2 border-accent ">
-            <CartModal key={cart._id} cart={cart}>
+            <CartModal>
               <Link to="/orders">
                 <button className="btn-regular">Review Order</button>
               </Link>

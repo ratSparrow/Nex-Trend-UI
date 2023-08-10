@@ -2,7 +2,7 @@ import React from "react";
 import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 
-const CartModal = ({ children, handleRemove, cart }) => {
+const CartModal = ({ children }) => {
   const { products, total } = useSelector((state) => state.cart);
 
   return (

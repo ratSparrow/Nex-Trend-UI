@@ -6,9 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import Rating from "react-rating";
 import "./Product.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/features/cart/cartSlice";
+import { addToDb } from "../../utilities/fakedb";
 
-const Product = ({ product, handleAddToCart }) => {
+const Product = ({ product }) => {
   const { name, img, seller, price, stock, star } = product;
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    addToDb(product._id);
+  };
 
   const cartIcon = (
     <FontAwesomeIcon className="text-sm mr-2" icon={faShoppingCart} />
