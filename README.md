@@ -57,10 +57,10 @@ Welcome to the Multivendor Application built using the MERN (MongoDB, Express.js
 - Internet browser (Chrome, Firefox, Safari, etc.)
 
 Technologies Used
-MongoDB: Database for storing product and user data.
-Express.js: Backend framework for building APIs and handling server-side logic.
-React: Frontend library for building user interfaces.
-Node.js: Runtime environment for server-side JavaScript.
-Redux: State management for React applications.
-Bootstrap: CSS framework for responsive design.
-... (other dependencies can be found in package.json files)
+* MongoDB: Database for storing product and user data.
+* Express.js: Backend framework for building APIs and handling server-side logic.
+* React: Frontend library for building user interfaces.
+* Node.js: Runtime environment for server-side JavaScript.
+* Redux: State management for React applications.
+* Tailwind: CSS framework that streamlines the process of building modern, responsive, and customizable user interfaces.
+* ... (other dependencies can be found in package.json files)
