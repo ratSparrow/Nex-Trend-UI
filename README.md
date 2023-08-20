@@ -27,10 +27,10 @@ Welcome to the Multivendor Application built using the MERN (MongoDB, Express.js
 2. **Customer Experience:**
    - Customers can browse and search for products across various vendors.
    - Customers can add products to their cart and proceed to checkout.
-   - Customers can track their order status and history.
+  
 
 3. **Authentication and Security:**
-   - User authentication and authorization are implemented for vendors and customers.
+   - User authentication and authorization are implemented for vendors and customers and admin.
    - Passwords are securely hashed before storage.
 
 4. **Product Management:**
