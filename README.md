@@ -2,7 +2,7 @@
 
 Welcome to the Multivendor Application built using the MERN (MongoDB, Express.js, React, Node.js) stack! This application serves as a platform where multiple vendors can showcase and sell their products to customers online. It provides a user-friendly interface for both vendors and customers to manage products, orders, and transactions. 
 
-### Firebase Live: https://e-mart-e2bb8.web.app/
+
 ### Netlify LIve: https://digio-mart.netlify.app/
 
 ## Table of Contents
