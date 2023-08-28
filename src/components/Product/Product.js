@@ -17,6 +17,7 @@ const Product = ({ product }) => {
     dispatch(addToCart(product));
     addToDb(product._id);
   };
+  console.log(product);
 
   const cartIcon = (
     <FontAwesomeIcon className="text-sm mr-2" icon={faShoppingCart} />
