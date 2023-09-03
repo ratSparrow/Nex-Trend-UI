@@ -22,9 +22,12 @@ const AllUser = () => {
     );
   }
   return (
-    <div>
-      <h2 className="text-3xl">All User</h2>{" "}
-      <div className="overflow-x-auto">
+    <div className="max-w-[1000px] mx-auto ">
+      <h2 className="text-3xl text-orange-600 my-10 text-center font-serif font-semibold ">
+        <span className="border-b-2 border-orange-600 ">USERS LIST </span>
+      </h2>
+
+      <div className="overflow-x-auto mb-10">
         <table className="table w-full">
           <thead>
             <tr>

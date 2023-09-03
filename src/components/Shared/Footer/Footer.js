@@ -4,7 +4,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-container my-10 p-10  text-base-content">
+    <footer className="footer footer-container my-10 p-10  text-base-content mb-0">
       <div>
         <span className="footer-title text-fuchsia-900 font-bold text-xl">
           Services

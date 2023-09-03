@@ -44,7 +44,7 @@ const CategoryList = () => {
       </h2>
       <div className="grid grid-cols-1 gap-4 my-4 ">
         {categories.map((category) => (
-          <div key={category.id} className=" shadow-xs px-1 ">
+          <div key={category.id} className=" shadow-xs px-1 hover:bg-slate-100">
             <button className="flex text-sm  hover:text-teal-600 hover:font-semibold">
               <span className="block">{category.title}</span>
             </button>

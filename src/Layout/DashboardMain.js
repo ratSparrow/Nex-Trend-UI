@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
-import Navbar from "../components/Shared/Navbar/Navbar";
+import logo from "../images/favicon.jpg";
 import auth from "../firebase.init";
 import useAdmin from "../hooks/useAdmin";
 import useVendor from "../hooks/useVendor";
@@ -11,8 +11,7 @@ const DashboardMain = () => {
   const [isUserAdmin] = useAdmin(user?.email);
   const [isVendor] = useVendor(user?.email);
   return (
-    <section className=" max-w-[1200px] mx-auto">
-      <Navbar />
+    <section className="mx-auto">
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"
@@ -24,7 +23,16 @@ const DashboardMain = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+          <ul className="menu p-4 w-70  text-base-content bg-orange-500">
+            <Link to="/">
+              <img src={logo} className="h-2/3 mx-auto" alt="" />
+              <hr className="mt-1" />
+            </Link>
+
+            <h1 className="text-2xl mb-3 text-center text-white font-semibold">
+              ADMIN DASHBOARD
+            </h1>
+
             <li>
               <Link to="/dashboard">Review</Link>
             </li>
@@ -32,9 +40,6 @@ const DashboardMain = () => {
               <React.Fragment>
                 <li>
                   <Link to="/dashboard/user">All User</Link>
-                </li>
-                <li>
-                  <Link to="/dashboard/addVendor">Add Vendor</Link>
                 </li>
               </React.Fragment>
             ) : (

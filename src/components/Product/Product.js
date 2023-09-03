@@ -9,13 +9,16 @@ import "./Product.css";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { addToDb } from "../../utilities/fakedb";
+import { toast } from "react-hot-toast";
 
 const Product = ({ product }) => {
   const { name, img, seller, price, stock, star } = product;
+  console.log(product.category);
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     addToDb(product._id);
+    toast("Added Product to the cart");
   };
   console.log(product);
 
@@ -25,7 +28,7 @@ const Product = ({ product }) => {
   const dollarSign = <FontAwesomeIcon icon={faDollarSign} />;
 
   return (
-    <main className="product-container  mx-2 rounded hover:border hover:border-red-400">
+    <main className="product-container  mx-2 rounded hover:border hover:border-orange-400 hover:shadow-sm">
       <section className="flex  items-center ">
         <section className="mr-8">
           <figure>
@@ -61,10 +64,13 @@ const Product = ({ product }) => {
 
           <br />
           <button
-            className="w-full border rounded-lg bg-gray-300 text-red-600 hover:bg-red-700 hover:text-white p-1 mt-4"
+            className="w-full border rounded-lg bg-gray-300 text-red-600 hover:bg-red-700 font-semibold font-serif hover:text-white p-1 mt-4"
             onClick={() => handleAddToCart(product)}
           >
             {cartIcon} Add
+          </button>
+          <button className="w-full border rounded-lg bg-gray-300 text-teal-600 hover:bg-teal-700 my-2 font-semibold font-serif hover:text-white p-1 mt-4">
+            Show Details
           </button>
         </section>
       </section>
