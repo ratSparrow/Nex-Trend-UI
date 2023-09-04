@@ -2,6 +2,7 @@ import React from "react";
 import Shop from "../../Shop/Shop";
 import Hero from "../Hero/Hero";
 import Testimonials from "../Testimonials/Testimonials";
+import ExtraBanner from "../ExtraBanner/ExtraBanner";
 
 const extras = [
   {
@@ -49,6 +50,7 @@ const Homepage = () => {
         ))}
       </section>
       <Shop />
+      <ExtraBanner />
       <Testimonials />
     </section>
   );

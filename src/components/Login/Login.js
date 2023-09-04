@@ -5,11 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
 import "./Login.css";
-import Loading from "../Loading/Loading";
 import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const [signInWithEmailAndPassword, loading, error] =
+  const [signInWithEmailAndPassword, error] =
     useSignInWithEmailAndPassword(auth);
 
   const [loginEmail, setLoginEmail] = useState("");
@@ -22,11 +21,6 @@ const Login = () => {
     signInWithEmailAndPassword(data.email, data.password);
     setLoginEmail(data.email);
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   signInWithEmailAndPassword(loginData.email, loginData.password);
-  // };
 
   if (token) {
     toast.success("user logged in successfully");
@@ -62,16 +56,11 @@ const Login = () => {
       w-3/4 border"
         />
 
-        {loading ? (
-          <Loading />
-        ) : (
-          <input
-            type="submit"
-            className="rounded font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600  m-3 cursor-pointer"
-          />
-        )}
+        <input
+          type="submit"
+          className="rounded font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600  m-3 cursor-pointer"
+        />
       </form>
-      {loading && <progress className="progress w-56"></progress>}
       {error && (
         <h1 className="text-white text-center text-sm border-2 border-red-800 rounded p-1 m-3 bg-red-800">
           {error}
@@ -80,7 +69,7 @@ const Login = () => {
       <Link to="/signup">
         <h2 className="text-blue-800 hover:text-red-500 text-center text-xl  mt-4 mb-8 hover:capitalize ">
           <span className="border-b-2 border-blue-800 hover:border-red-500">
-            Not an account? Sign Up
+            Not An Account? Sign Up
           </span>
         </h2>
       </Link>
