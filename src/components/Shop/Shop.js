@@ -21,7 +21,7 @@ const Shop = () => {
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search Product"
             type="text"
-            className="input rounded-sm input-accent w-1/2 input-sm"
+            className="input input-primary hover:border-lime-300 rounded-sm  w-1/2 input-sm"
           />
         </div>
         <h4 className="text-3xl text-[#C92127]  text-center font-bold ">

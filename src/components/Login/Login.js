@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import useToken from "../../hooks/useToken";
 import "./Login.css";
+import Loading from "../Loading/Loading";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [signInWithEmailAndPassword, loading, error] =
@@ -27,13 +29,14 @@ const Login = () => {
   // };
 
   if (token) {
+    toast.success("user logged in successfully");
     navigate("/");
   }
 
   return (
-    <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
-      <h2 className="text-lg font-semibold text-black-500 text-center mb-4 text-red-900">
-        Login
+    <div className="bg-slate-100  mx-auto border-2 rounded mt-10 sm:w-1/4 lg:w-2/4">
+      <h2 className="text-3xl text-orange-600 my-10 text-center font-serif font-semibold ">
+        <span className="border-b-2 border-orange-600 "> Sign In </span>
       </h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -45,7 +48,7 @@ const Login = () => {
           type="email"
           name="email"
           placeholder="your email"
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
+          className="rounded input-primary bg-white p-1 mx-auto hover:border-lime-300
             w-3/4 border"
         />
 
@@ -55,14 +58,18 @@ const Login = () => {
           type="password"
           name="password"
           placeholder="password"
-          className="rounded bg-white p-1 mx-auto hover:border-lime-300
+          className="rounded input-primary bg-white p-1 mx-auto hover:border-lime-300
       w-3/4 border"
         />
 
-        <input
-          type="submit"
-          className="rounded-full font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:text-amber-700 m-3 cursor-pointer"
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <input
+            type="submit"
+            className="rounded font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600  m-3 cursor-pointer"
+          />
+        )}
       </form>
       {loading && <progress className="progress w-56"></progress>}
       {error && (
@@ -71,8 +78,10 @@ const Login = () => {
         </h1>
       )}
       <Link to="/signup">
-        <h2 className="text-blue-800 hover:text-red-700 text-center text-sm mt-4 mb-3 hover:capitalize">
-          Not an account? Sign Up
+        <h2 className="text-blue-800 hover:text-red-500 text-center text-xl  mt-4 mb-8 hover:capitalize ">
+          <span className="border-b-2 border-blue-800 hover:border-red-500">
+            Not an account? Sign Up
+          </span>
         </h2>
       </Link>
     </div>

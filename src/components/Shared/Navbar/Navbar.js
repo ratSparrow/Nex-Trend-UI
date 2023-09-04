@@ -3,15 +3,12 @@ import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
-
+import logo from "../../../images/favicon.jpg";
 import "./Navbar.css";
-import Assistant from "../Assistant/Assistant";
-import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
-  const { products } = useSelector((state) => state.cart);
 
   const navItems = (
     <React.Fragment>
@@ -84,91 +81,52 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100  ">
-      <div className="navbar-start ">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+    <>
+      <div className="navbar bg-[#1A103C] ">
+        <div className="navbar-start ">
+          <div className="dropdown max-w-[1100px]">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-10 w-10 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h7"
-              />
-            </svg>
-          </label>
-          <ul
-            tabIndex={1}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              {navItems}
+            </ul>
+          </div>
+          <h3
+            title="home"
+            className="navbar-center font-extrabold  text-white font-serif"
           >
+            <Link to="/" className="  ">
+              <div className="flex items-center">
+                <img src={logo} className="w-10 mx-auto" alt="" />{" "}
+                <span className="text-xl ml-6">Digi Mart </span>
+              </div>
+            </Link>
+          </h3>
+        </div>
+        <div className="navbar-center hidden lg:flex max-w-[1100px] mx-auto">
+          <ul className="menu menu-horizontal px-1 text-fuchsia-600 ">
             {navItems}
           </ul>
         </div>
       </div>
-      <h3
-        title="home"
-        className="navbar-center font-extrabold  text-[#FB923C] header-title"
-      >
-        <Link to="/" className="normal-case text-xl ">
-          Digi-Mart
-        </Link>
-      </h3>
-
-      <div className="navbar-end ">
-        <label
-          title="cart"
-          htmlFor="cart-modal"
-          className="btn hover:bg-white bg-white border-0 text-[#FB923C] font-extrabold text-2xl"
-        >
-          <div className="indicator">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            <span className="badge text-red-400 bg-white border-none badge-sm indicator-item">
-              {products.length}
-            </span>
-          </div>
-        </label>
-      </div>
-
-      <Assistant></Assistant>
-
-      <div className="navbar-end">
-        <label tabIndex={2} htmlFor="dashboard-drawer" className="lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h7"
-            />
-          </svg>
-        </label>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -47,16 +47,16 @@ const SignUp = () => {
       .then((data) => {
         if (data.acknowledged === true) {
           setLoginEmail(email);
-          toast("Profile created and  updated");
+          toast.success("Profile created and updated successfully");
         }
       });
   };
 
   return (
     <React.Fragment>
-      <div className="bg-slate-100 w-96 mx-auto border-2 rounded mt-10">
-        <h2 className="text-lg font-semibold text-black-500 text-center mb-4 text-red-900">
-          Login
+      <div className="bg-slate-100  border-2 mx-auto sm:w-1/4 lg:w-2/4  rounded mt-10">
+        <h2 className="text-3xl text-orange-600 my-10 text-center font-serif font-semibold ">
+          <span className="border-b-2 border-orange-600 "> Sign Up </span>
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -67,8 +67,8 @@ const SignUp = () => {
             {...register("name")}
             type="text"
             name="name"
-            placeholder="your name"
-            className="rounded bg-white p-1 mx-auto hover:border-lime-300
+            placeholder="Name"
+            className="rounded input-primary bg-white  p-1 mx-auto hover:border-lime-300
 w-3/4 border"
           />
           <input
@@ -76,8 +76,8 @@ w-3/4 border"
             {...register("email")}
             type="email"
             name="email"
-            placeholder="your email"
-            className="rounded bg-white p-1 mx-auto hover:border-lime-300
+            placeholder="Email"
+            className="rounded input-primary bg-white p-1 mx-auto hover:border-lime-300
         w-3/4 border"
           />
 
@@ -86,8 +86,8 @@ w-3/4 border"
             {...register("password")}
             type="password"
             name="password"
-            placeholder="password"
-            className="rounded bg-white p-1 mx-auto hover:border-lime-300
+            placeholder="Password"
+            className="rounded input-primary bg-white p-1 mx-auto hover:border-lime-300
   w-3/4 border"
           />
           <input
@@ -95,19 +95,21 @@ w-3/4 border"
             {...register("confirmPassword")}
             type="password"
             name="confirmPassword"
-            placeholder="confirm password"
-            className="rounded bg-white p-1 mx-auto hover:border-lime-300
+            placeholder="Confirm Password"
+            className="rounded input-primary bg-white p-1 mx-auto hover:border-lime-300
 w-3/4 border"
           />
 
           <input
             type="submit"
-            className="rounded-full font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 hover:text-amber-700 m-3 cursor-pointer"
+            className="rounded  font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600 m-3 cursor-pointer"
           />
         </form>
         <Link to="/login">
-          <h2 className="text-blue-800 hover:text-red-700 text-center text-sm mt-4 mb-3 hover:capitalize">
-            Login
+          <h2 className="text-blue-800 hover:text-red-500 text-center text-xl  mt-4 mb-8 hover:capitalize ">
+            <span className="border-b-2 border-blue-800 hover:border-red-500">
+              Already Have An Account ? Please Login
+            </span>
           </h2>
         </Link>
       </div>
