@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
+import emailjs from "emailjs-com";
 import contact from "../../assets/contact.png";
 
 const ContactUs = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    console.log(data);
+    emailjs
+      .sendForm(
+        "service_a6cwj18",
+        "template_uzi6put",
+        data,
+        "user_ey965KOdwNxfOzoELomzi"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
-    <section className="mx-8  max-w-[1200px] mx-auto">
+    <section className=" max-w-[1200px] mx-auto">
       <h2 className="text-4xl font-bold my-4">Lets talk about everything!</h2>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         <div className="mx-auto my-auto">
@@ -25,7 +43,7 @@ const ContactUs = () => {
             <input
               required
               {...register("name")}
-              type="email"
+              type="text"
               name="name"
               placeholder="Enter Your Full Name"
               className="rounded  p-3 mx-auto 

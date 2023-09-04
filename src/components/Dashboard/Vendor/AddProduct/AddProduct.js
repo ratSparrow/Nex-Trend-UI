@@ -50,7 +50,7 @@ const AddProduct = () => {
               console.log(data);
               if (data.insertedId) {
                 toast.success(` product is added successfully`);
-                navigate("/inventory");
+                navigate("/");
               }
             });
         }
