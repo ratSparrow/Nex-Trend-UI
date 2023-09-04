@@ -146,7 +146,7 @@ export default function ProductDetails() {
           </span>
         </h4>
         <h4 className=" font-serif text-sm mt-2 decoration-black pb-5">
-          {features.map((feature) => (
+          {features?.map((feature) => (
             <ul className="flex item-center justify-between">
               <li className="text-lg my-1">{feature.description} : </li>
               <li className="text-lg my-1"> {feature.value}</li>

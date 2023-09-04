@@ -14,11 +14,11 @@ const Payment = () => {
   totalAmount = total + shipping + tax;
 
   return (
-    <div className=" max-w-[1200px] mx-auto">
-      <p className="text-xl">
+    <div className=" max-w-[1200px] min-h-screen">
+      <p className="text-xl text-center my-2">
         Please pay <strong>${totalAmount.toFixed(2)}</strong> for your product.
       </p>
-      <div className="w-96 my-9">
+      <div className="w-96 my-9 mx-auto">
         <Elements stripe={stripePromise}>
           <CheckoutForm totalAmount={totalAmount} />
         </Elements>

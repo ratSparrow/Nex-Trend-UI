@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartModal from "../CartModal/CartModal";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import { useDispatch, useSelector } from "react-redux";
 import { removeOneFromCart } from "../../redux/features/cart/cartSlice";
@@ -34,13 +33,13 @@ const Orders = () => {
           <img src={orderImg} alt="" />
         </div>
       )}
-      <div className="">
-        <CartModal key={products._id} cart={products}>
-          <Link to="/payment">
-            <button className="btn-regular">Proceed payment</button>
-          </Link>
-        </CartModal>
-      </div>
+      <Link to="/payment">
+        <div className="my-4 flex justify-end">
+          <button className="rounded font-semibold text-white w-2/4 mx-auto px-1 bg-green-500 p-1  hover:bg-green-600  m-3 cursor-pointer">
+            Proceed Payment
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };

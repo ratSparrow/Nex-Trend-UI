@@ -24,13 +24,16 @@ const Shop = () => {
             className="input input-primary hover:border-lime-300 rounded-sm  w-1/2 input-sm"
           />
         </div>
-        <h4 className="text-3xl text-[#C92127]  text-center font-bold ">
-          Our Featured Items
-        </h4>
+        <h2 className="text-3xl text-orange-600 my-10 text-center font-serif font-semibold ">
+          <span className="border-b-2 border-orange-600 ">
+            {" "}
+            Our Featured Items{" "}
+          </span>
+        </h2>
+
         <div className="grid ">
           <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-6">
             {displayProduct
-              .reverse()
               .filter((item) => {
                 return searchText.toLocaleLowerCase() === ""
                   ? item
@@ -38,7 +41,8 @@ const Shop = () => {
               })
               .map((product) => (
                 <Product key={product._id} product={product}></Product>
-              ))}
+              ))
+              .reverse()}
           </div>
 
           <div className="cart-container border-l-2 border-accent ">

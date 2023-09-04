@@ -121,7 +121,7 @@ const Navbar = () => {
           </h3>
         </div>
         <div className="navbar-center hidden lg:flex max-w-[1100px] mx-auto">
-          <ul className="menu menu-horizontal px-1 text-fuchsia-600 ">
+          <ul className="menu menu-horizontal px-1 text-yellow-600 font-semibold">
             {navItems}
           </ul>
         </div>

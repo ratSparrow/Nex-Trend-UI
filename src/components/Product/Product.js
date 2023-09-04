@@ -19,7 +19,7 @@ const Product = ({ product }) => {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     addToDb(product._id);
-    toast("Added Product to the cart");
+    toast.success("Added Product to the cart");
   };
   // console.log(product);
 
@@ -70,7 +70,7 @@ const Product = ({ product }) => {
           >
             {cartIcon} Add
           </button>
-          <Link to={`details/${_id}`}>
+          <Link to={`/inventory/details/${_id}`}>
             {" "}
             <button className="w-full border rounded-lg bg-gray-300 text-teal-600 hover:bg-teal-700 my-2 font-semibold font-serif hover:text-white p-1 mt-4">
               Show Details
