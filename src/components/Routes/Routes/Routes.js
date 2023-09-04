@@ -26,6 +26,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import VendorRoute from "../VendorRoute/VendorRoute";
 import ComingSoon from "../../ComingSoon/ComingSoon";
+import ProductDetails from "../../Product/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+      },
+      {
+        path: "/details/:id",
+        element: <ProductDetails />,
       },
       {
         path: "/about",

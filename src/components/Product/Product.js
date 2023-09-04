@@ -10,17 +10,18 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { addToDb } from "../../utilities/fakedb";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const { name, img, seller, price, stock, star } = product;
-  console.log(product.category);
+  const { _id, name, img, seller, price, stock, star } = product;
+  // console.log(product.category);
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     addToDb(product._id);
     toast("Added Product to the cart");
   };
-  console.log(product);
+  // console.log(product);
 
   const cartIcon = (
     <FontAwesomeIcon className="text-sm mr-2" icon={faShoppingCart} />
@@ -69,9 +70,12 @@ const Product = ({ product }) => {
           >
             {cartIcon} Add
           </button>
-          <button className="w-full border rounded-lg bg-gray-300 text-teal-600 hover:bg-teal-700 my-2 font-semibold font-serif hover:text-white p-1 mt-4">
-            Show Details
-          </button>
+          <Link to={`details/${_id}`}>
+            {" "}
+            <button className="w-full border rounded-lg bg-gray-300 text-teal-600 hover:bg-teal-700 my-2 font-semibold font-serif hover:text-white p-1 mt-4">
+              Show Details
+            </button>
+          </Link>
         </section>
       </section>
     </main>
