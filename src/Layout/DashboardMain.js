@@ -23,31 +23,40 @@ const DashboardMain = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-70  text-base-content bg-orange-500">
+          <ul className="menu px-4 w-70  text-base-content bg-orange-500">
             <Link to="/">
-              <img src={logo} className="h-2/3 mx-auto" alt="" />
+              <img src={logo} className="w-16 mx-auto" alt="" />
               <hr className="mt-1" />
             </Link>
 
             <h1 className="text-2xl mb-3 text-center text-white font-semibold">
-              ADMIN DASHBOARD
+              DASHBOARD
             </h1>
 
-            <li>
-              <Link to="/dashboard">Review</Link>
+            <li className="text-white text-xl flex">
+              <Link to="/dashboard">
+                <i className="fa-solid fa-folder"></i> <span>Order</span>
+              </Link>
             </li>
             {isUserAdmin ? (
               <React.Fragment>
-                <li>
-                  <Link to="/dashboard/user">All User</Link>
+                <li className="text-white text-xl flex">
+                  <Link to="/dashboard/user">
+                    {" "}
+                    <i class="fa-solid fa-users"></i>
+                    <span>All User</span>
+                  </Link>
                 </li>
               </React.Fragment>
             ) : (
               <React.Fragment></React.Fragment>
             )}
             {isVendor && (
-              <li>
-                <Link to="/dashboard/addproduct">Add Product</Link>
+              <li className="text-white text-xl flex">
+                <Link to="/dashboard/addproduct">
+                  <i class="fa-solid fa-square-plus"></i>
+                  <span>Add Product</span>
+                </Link>
               </li>
             )}
           </ul>

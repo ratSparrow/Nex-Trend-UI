@@ -58,84 +58,85 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl">Add Products</h2>
+    <div className="max-w-[1000px] mx-auto">
+      <h2 className="text-3xl text-orange-600 my-10 text-center font-serif font-semibold ">
+        <span className="border-b-2 border-orange-600 ">ADD PRODUCT </span>
+      </h2>
       <div className="mt-5">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 gap-4 place-content-center "
-        >
-          <input
-            required
-            {...register("name")}
-            type="text"
-            name="name"
-            placeholder="product name"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
+        <form onSubmit={handleSubmit(onSubmit)} className="text-center">
+          <div className="grid grid-cols-2 gap-4 ">
+            <input
+              required
+              {...register("name")}
+              type="text"
+              name="name"
+              placeholder="title example: Iphone 11 Pro Max"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
 
-          <input
-            required
-            {...register("category")}
-            type="text"
-            name="category"
-            placeholder="category"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            required
-            {...register("price")}
-            type="text"
-            name="price"
-            placeholder="price"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            required
-            {...register("seller")}
-            type="text"
-            name="seller"
-            placeholder="seller or vendor"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            required
-            {...register("shipping")}
-            type="text"
-            name="shipping"
-            placeholder="shipping charge"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            required
-            {...register("star")}
-            type="text"
-            name="star"
-            placeholder="review"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            required
-            {...register("stock")}
-            type="text"
-            name="stock"
-            placeholder="stock"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          <input
-            {...register("image", { required: "image is required" })}
-            type="file"
-            className="input mx-auto input-bordered input-xs w-full max-w-xs"
-          />
-          {errors.image && (
-            <p role="alert" className="text-red-600">
-              {errors.name?.message}
-            </p>
-          )}
+            <input
+              required
+              {...register("category")}
+              type="text"
+              name="category "
+              placeholder="category example: Electronics"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              required
+              {...register("price")}
+              type="text"
+              name="price"
+              placeholder="price example: $400"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              required
+              {...register("seller")}
+              type="text"
+              name="seller"
+              placeholder="seller example: Apple"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              required
+              {...register("shipping")}
+              type="text"
+              name="shipping"
+              placeholder="shipping charge example: $10"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              required
+              {...register("star")}
+              type="text"
+              name="star"
+              placeholder="review example: 4.5"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              required
+              {...register("stock")}
+              type="text"
+              name="stock"
+              placeholder="stock example: 100"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            <input
+              {...register("image", { required: "image is required" })}
+              type="file"
+              className="input mx-auto input-primary hover:border-lime-300 input-bordered  w-full rounded "
+            />
+            {errors.image && (
+              <p role="alert" className="text-red-600">
+                {errors.name?.message}
+              </p>
+            )}
+          </div>
 
           <input
             type="submit"
-            className="rounded-full  font-semibold text-white w-1/4 mx-auto px-1 bg-orange-500 p-1  hover:bg-orange-600  m-3 cursor-pointer"
+            className="rounded font-semibold text-white w-1/3 mt-8  px-1 bg-orange-500 p-1  hover:bg-orange-600  m-3 cursor-pointer"
           />
         </form>
       </div>

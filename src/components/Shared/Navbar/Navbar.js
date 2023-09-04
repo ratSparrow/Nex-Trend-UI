@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
 import logo from "../../../images/favicon.jpg";
 import "./Navbar.css";
+import useAdmin from "../../../hooks/useAdmin";
+import useVendor from "../../../hooks/useVendor";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const [signOut] = useSignOut(auth);
+  const [isUserAdmin] = useAdmin(user?.email);
+  const [isVendor] = useVendor(user?.email);
 
   const navItems = (
     <React.Fragment>
@@ -52,10 +56,13 @@ const Navbar = () => {
           <li>
             <Link to="/inventory">Inventory</Link>
           </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
         </React.Fragment>
+      )}
+
+      {(isUserAdmin || isVendor) && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
       )}
 
       {user ? (

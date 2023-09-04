@@ -6,7 +6,6 @@ import auth from "../../../firebase.init";
 
 const ShowError = () => {
   const error = useRouteError();
-
   const navigate = useNavigate();
   const [signOut] = useSignOut(auth);
   const handleLogout = async () => {
@@ -16,6 +15,10 @@ const ShowError = () => {
       toast("Oops! User Sign Out");
     }
   };
+  setTimeout(() => {
+    navigate.push("/");
+  }, 3000);
+
   return (
     <div>
       <p className="text-red-500">Something! went wrong</p>

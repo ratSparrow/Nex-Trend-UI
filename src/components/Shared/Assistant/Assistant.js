@@ -13,7 +13,7 @@ const Assistant = () => {
         >
           <i className="fa-solid fa-headset text-2xl font-extrabold text-white"></i>
           <span className="ml-2 text-white font-serif font-bold">
-            How Can I Help?
+            How May I Help?
           </span>
         </Link>
       </button>
