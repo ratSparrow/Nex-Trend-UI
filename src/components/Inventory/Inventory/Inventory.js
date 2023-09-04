@@ -48,13 +48,13 @@ const Inventory = () => {
   if (isLoading) {
     return <Loading />;
   }
+  console.log(products);
   const newFilteredList = products?.filter((product) => {
     if (selectedField === product.category) {
       return product;
     } else if (selectedField === "all") {
       return product;
     }
-    return product;
   });
 
   return (
